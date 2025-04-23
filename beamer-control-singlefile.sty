@@ -1,0 +1,18 @@
+
+\ProvidesPackage{beamer-control-singlefile}
+
+
+\renewcommand\SUMMARYFRAME{%
+  \begin{frame}[plain]
+    \frametitle{Summary}
+    \SECTOC
+  \end{frame}
+}
+
+\AtBeginSubsection{
+  \begin{frame}[plain]
+  \subsectionpage
+  \end{frame}
+}
+
+\let\FINALE\FINALESLIDE

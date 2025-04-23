@@ -1,0 +1,83 @@
+\documentclass[9pt]{beamer-control}
+\usepackage{beamer-control-prac}
+\begin{document}
+\CONCEPT[5]{Week 5: Frequency domain modelling}
+
+\begin{frame}
+\frametitle{Introduction}
+In this practical, ...
+
+\vfill
+
+This practical will consist of the following parts:
+\begin{itemize}
+\item ...
+\end{itemize}
+\end{frame}
+
+\SUBCONCEPT{Second-order systems}
+
+\begin{frame}{Compound pendulum}
+	
+Grab the yellow compound pendulum and position the QUBE on its side, such that the pendulum is appropriately affected by gravity.\\
+
+\textcolor{red}{Image of compound pendulm and QUBE}
+
+\end{frame}
+
+
+\begin{frame}{Compound pendulum}
+The nonlinear equation of motion for the pendulum is 
+\[\tau(t) = (J_m+J_h+J_p) \ddot{\theta}(t) + D_r \dot{\theta}(t) + m_b r_p g \sin \left(\theta (t)\right), \]
+where $\tau$ is the torque applied to the joint and $\theta$ is the angular displacement of the pendulum. The constants in this equation are the moments of inertia of the mass, hub, and pendulum $J_m$, $J_h$, and $J_p$, the mass of the bob $m_b$, centre of gravity of the pendulum $r_p$, viscous damping of the pivot $D_r$, and the gravitational acceleration $g$.\\
+
+Using the small angle approximation, applying th Laplace transform, and rearranging the second-order transfer function for the compound pendulum is 
+\[ G(s) = \frac{\theta(s)}{\tau (s)} = \frac{1}{(J_m+J_h+J_p)s^2 + D_r s + M_b r_p g } .\]
+
+\end{frame}
+
+
+\begin{frame}{Compound pendulum}
+The constants for the QUBE compound pendulum plant have values XXXXXXX.
+The moment of inertia of a pendulum is given by $J_p = m_b r_p^2+ \tfrac{1}{2}m_b r_b^2$.
+
+
+\end{frame}
+
+\begin{frame}{Compound pendulum}
+The second-order transfer function may be transformed into a two-dimensional linear state-space model given by the matrices
+\[\mathbf{A} = , \mathbf{B} = , \mathbf{C} = , \mathbf{D}=  \]
+\end{frame}
+
+
+
+\begin{frame}{Pole placement}
+
+\textcolor{red}{Test this out with compound pendulum.}
+
+Given the transfer function model of the compound pendulum, one method of control may be to design proportional feedback such that the resulting poles of the closed loop system provide a desired response. Using the MATLAB command K=place(A,B,p), determine the feedback gain required to move the poles such that the 2\% settling time is XXXX with a damping ratio of XXXX. \\
+You may use the following relation
+\[ T_{2\%} = \frac{4}{\zeta_n \omega_n}. \]
+
+Why is pole placement not a robust control strategy?
+
+
+\end{frame}
+
+
+\begin{frame}{PID Control}
+Now implement PID control, model response as a FOTD to find initial gains?
+\end{frame}
+
+
+
+\begin{frame}{Frequency response}
+Given an input frequency, what is the phase and amplitude? \\
+
+This will prepare us for the practical next week in which we will experimentally analyse the frequency response of the compound pendulum plant.
+\end{frame}
+
+
+\SUMMARYFRAME
+
+\end{document}

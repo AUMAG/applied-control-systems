@@ -1,0 +1,50 @@
+\documentclass[9pt]{beamer-control}
+\usepackage{beamer-control-prac}
+\begin{document}
+\CONCEPT[4]{Week 4: Feedback design}
+
+\begin{frame}
+\frametitle{Introduction}
+In this practical, ...
+
+\vfill
+
+This practical will consist of the following parts:
+\begin{itemize}
+\item ...
+\end{itemize}
+\end{frame}
+
+\SUBCONCEPT{Tuning}
+
+\begin{frame}{Tuning laws}
+In previous weeks we have characterised the output of the QUBE intertia disk as an Integrator with Time Delay (ITD) model. From this output characterisation we can use the following offline tuning laws to set $K_p$, $K_i$, and $K_d$.\\
+\textbf{PID tuning laws}
+\begin{itemize}
+\item Ziegler-Nichols
+\item Chien-Hrones-Reswick
+\end{itemize}
+Using the definitions in the notes and your previously found ITD parameters, find the PID gains using both tuning laws.
+\end{frame}
+
+\begin{frame}{Tuning laws}
+Using both Ziegler-Nichols and Chien-Hrones-Reswick tuning laws, assess which offers the better performance.
+\end{frame}
+
+\SUBCONCEPT{Extensions}
+
+\begin{frame}{Linear quadratic regulator?}
+\textcolor{red}{Include this? If so, check Q and R}\\
+The state-space model derived in previous weeks may also be used to derive control gains. Using state and input weight matrices, 
+\[ \mathbf{Q} = \begin{bmatrix}
+	1 & 0 \\ 0 & 1
+\end{bmatrix}, \quad \mathbf{R} = 1 ,\]
+an optimal state-feedback controller (with just proportional control) can be found using the MATLAB function K=lqr(A,B,Q,R).\\
+After implementing these gains on the inertia disk system, play around with varying the entries of $\mathbf{Q}$ and $\mathbf{R}$.
+
+\end{frame}
+
+
+\SUMMARYFRAME
+
+\end{document}

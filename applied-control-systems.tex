@@ -1,0 +1,102 @@
+\documentclass[handout]{beamer-control}
+\begin{document}
+
+\ifonlylectureT{
+
+\begin{frame}[plain]
+\centerline{\includegraphics{au-logo}}
+\maketitle
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{List of Topics}
+\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide,part=1]
+\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide,part=2]
+\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide,part=3]
+\end{frame}
+
+}
+
+\setcounter{framenumber}{0}
+
+\input{acs-0-0-0-welcome.tex}
+
+\MODULE{Dynamical Systems}
+
+\TOPIC{Introduction and System Modelling}
+
+  \input{acs-1-1-1-intro.tex}
+  \input{acs-1-1-2-concepts}
+  \input{acs-1-1-3-statespace.tex}
+  \input{acs-1-1-4-modelling.tex}
+
+\TOPIC{Dynamic Behaviour}
+
+  \input{acs-1-2-1-diffeq.tex}
+  \input{acs-1-2-2-qual.tex}
+  \input{acs-1-2-3-stability.tex}
+  \input{acs-1-2-4-examples.tex}
+
+\TOPIC{Linear Systems}
+
+  \input{acs-1-3-1-linear.tex}
+  \input{acs-1-3-2-matrix.tex}
+  \input{acs-1-3-3-response.tex}
+  \input{acs-1-3-4-linearisation.tex}
+
+
+\MODULE{Control System Concepts}
+
+
+\TOPIC{State Feedback}
+
+  \input{acs-2-4-1-reachability.tex}
+  \input{acs-2-4-2-stabilisation.tex}
+  \input{acs-2-4-3-statedesign.tex}
+  \input{acs-2-4-4-integral.tex}
+  \input{acs-2-4-5-observer.tex}
+
+\TOPIC{Transfer Functions}
+
+  \input{acs-2-5-1-freq.tex}
+  \input{acs-2-5-2-tf.tex}
+  \input{acs-2-5-3-laplace.tex}
+  \input{acs-2-5-4-blockdiag.tex}
+  \input{acs-2-5-5-dc.tex}
+  \input{acs-2-5-6-bode.tex}
+
+\TOPIC{Frequency Domain Analysis}
+
+  \input{acs-2-6-1-loop.tex}
+  \input{acs-2-6-2-nyq.tex}
+  \input{acs-2-6-3-stabmarg.tex}
+  \input{acs-2-6-4-minphase.tex}
+
+
+\MODULE{Control System Design}
+
+\TOPIC{PID Control}
+
+  \input{acs-3-7-1-control.tex}
+  \input{acs-3-7-2-simple.tex}
+  \input{acs-3-7-3-pid.tex}
+  \input{acs-3-7-4-windup.tex}
+  \input{acs-3-7-5-implement.tex}
+
+\TOPIC{Frequency Domain Design}
+
+  \input{acs-3-8-1-sensitivity.tex}
+  \input{acs-3-8-2-performance.tex}
+  \input{acs-3-8-3-loopshape.tex}
+  \input{acs-3-8-4-rootlocus.tex}
+
+\TOPIC{Robust Performance \& Fundamental Limits}
+
+  \input{acs-3-9-1-uncertainmod.tex}
+  \input{acs-3-9-2-uncertainty.tex}
+  \input{acs-3-9-3-sysdesign.tex}
+  \input{acs-3-9-4-robust.tex}
+  \input{acs-3-9-5-nonlinear.tex}
+
+\end{document}
+
