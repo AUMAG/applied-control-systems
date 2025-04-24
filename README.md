@@ -1,8 +1,8 @@
+<img src="figures/aulogo-inverse.svg" />
+
 # Applied Control Systems
 
 Course notes for Applied Control Systems at Adelaide University.
-
-<img src="figures/aulogo-darkblue.svg" />
 
 ## Textbook
 
