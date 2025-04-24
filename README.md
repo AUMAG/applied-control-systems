@@ -1,6 +1,8 @@
-# applied-control-systems
+# Applied Control Systems
 
-Course notes for Applied Control Systems at Adelaide University
+Course notes for Applied Control Systems at Adelaide University.
+
+<img src="figures/aulogo-darkblue.svg" />
 
 ## Textbook
 
