@@ -5,13 +5,14 @@
 
 \begin{frame}
 \frametitle{Introduction}
-In this practical, ...
+In this practical, you will learn how to derive a first-principles model of the inertia disk plant as well as how to characterise its output response.
 
 \vfill
 
 This practical will consist of the following parts:
 \begin{itemize}
-\item ...
+\item First-principles modelling
+\item Characterising the output response
 \end{itemize}
 \end{frame}
 
@@ -29,7 +30,7 @@ We begin by deriving a first principles model of the inertia disk. A schematic d
 \end{frame}
 
 \begin{frame}{Deriving the model}
-The DC motor shaft with moment of inertia $J_m$ is connected to the load hub which is a metal disc used to mount the inertia disc and has a moment of inertia of $J_h$. The back-emf (electromotive) voltage $e)_b(t)$ depends on the speed of the motor shaft, $\omega_m$, and the back-emf constant of the motor $k_m$ and opposes the current flow. The back-emf voltage is given by 
+The DC motor shaft with moment of inertia $J_m$ is connected to the load hub which is a metal disc used to mount the inertia disc and has a moment of inertia of $J_h$. The back-emf (electromotive) voltage $e_b(t)$ depends on the speed of the motor shaft, $\omega_m$, and the back-emf constant of the motor $k_m$ and opposes the current flow. The back-emf voltage is given by 
 \[e_b(t) = k_m \omega _m (t) \]
 Using Kirchoff's Voltage Law, we can write
 \[v_m(t) - R_m i_m(t)-L_m \frac{\mathrm{d} i_m(t)}{\mathrm{d} t} - k_m \omega_m (t) = 0\]
@@ -77,31 +78,33 @@ Setting the input as $\mathbf{u}=v_m$, the matrices are
 \begin{frame}{Simulating the model}
 The required parameter values for the QUBE inertia disk are $R_m=8.4\Omega$, $k_m=0.042$ V/(rad/s), $D_r=2\times 10^{-5}$ N.m.s/rad, $J_m = 4\times 10^{-6}$ kg.m$^2$, $J_h = 0.65 \times 10^{-6}$ kg.m$^2$, $m_d=0.053$ kg, and $r_d = 0.0248$ m.
 
-Defining the matrices $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$, and $\mathbf{D}$ in MATLAB allow us to simulate the modelled system in MATLAB and Simulink.
+Using these values
+\begin{enumerate}
+	\item Define the matrices $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$, and $\mathbf{D}$ in Matlab 
+	\item Use the code on the following slide to set up the state space model in Matlab
+	\item Run the code to simulate the systems reponse to a step input 
+\end{enumerate}
+
 \end{frame}
 
 \begin{frame}{Simulating the model}
-\textbf{Simulating in MATLAB}\\
-\% Define A, B, C, and D matrices here\\
-A = \\
-B = \\
-C = \\
-D = \\
-model\_inertia\_disk = ss(A,B,C,D); \\
-\% Define state, input, and output names\\
-State\_names = str2mat(`theta',`omega');\\
-set(model\_inertia\_disk,`StateName',Statenames);\\
-set(model\_inertia\_disk,'InputName',{'V\_{command}'},...\\
-'OutputName',{'theta'}); \\
-step(model\_inertia\_disk)
+\includematlab{prac1.m}{part1}
 \end{frame}
 
 
 \begin{frame}{Simulating the model}
-\textbf{Simulating in Simulink}\\
-Create a state-space block in Simulink and use the $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$, and $\mathbf{D}$ matrices as defined by your MATLAB script (Simulink can use these matrices if they are in your MATLAB workspace). 
+Similarly, we can use Simulink to simulate the state space model.
+\begin{enumerate}
+	\item Create a state-space block in Simulink and use the $\mathbf{A}$, $\mathbf{B}$, $\mathbf{C}$, and $\mathbf{D}$ matrices as defined by your Matlab script (Simulink can use these matrices if they are in your Matlab workspace)
+	\item Input the same step input into the state-space block as the real plant and connect the output to the same scope
+	\item Run the Simulink model and compare the model with the physical plant
+\end{enumerate}
 
-You may compare the  model with the physical plant by inputting the same input (constant 1V step input) and connecting the output of the physical QUBE and the output of the state-space block to the same scope.
+What do you notice?
+
+
+\textcolor{red}{Simulink diagram of SS model and plant with same input and going into same scope}
+
 \end{frame}
 
 
@@ -110,9 +113,14 @@ You may compare the  model with the physical plant by inputting the same input (
 \SUBCONCEPT{Characterising the output response}
 
 \begin{frame}{Parameter calculation}
-An alternative method to deriving a first principles model is to identify the system by fitting a curve to the output response. The open loop (no feedback) response of the inertia disk may be modelled as an Integrator with Time Delay (ITD) model which requires two parameters, $a$ and $L$.
-	
-The intercept $a$ and the time lag $L$ may be calculated according to the definition in the notes (also shown in the following figure). The Scope has an excellent feature to measure individual points for you. Select tools > Measurements > Cursor Measurements to assist in identifying individual points. The vertical lines which appear may be dragged left and right to select points and specific data is given in the Cursor Measurements box on the right of the scope window.
+An alternative method to deriving a first principles model is to identify the system by fitting a curve to the output response. 
+
+\begin{itemize}
+	\item The open loop (no feedback) response of the inertia disk may be modelled as an Integrator with Time Delay (ITD) model which requires two parameters, $a$ and $L$
+	\item The intercept $a$ and the time lag $L$ may be calculated according to the definition in the notes (also shown in the following figure)
+\end{itemize}
+
+
 \end{frame}
 
 \begin{frame}
@@ -123,13 +131,25 @@ The intercept $a$ and the time lag $L$ may be calculated according to the defini
 	\end{figure}
 \end{frame}
 
+
 \begin{frame}
-	When we start looking at controlling a system to reach a desired output we will see that deriving models or characterising output responses give us methods of determining good controllers. Next week we will be introduced to the concept of feedback to control the inertia disk to reach a desired angle. 
+	Approximate the ITD parameters $a$ and $L$ of the open-loop inertia disk.
+	\begin{enumerate}
+		\item Run the Simulink model for 10 seconds to receive the output response to a step input
+		\item Open the Scope and click Tools > Measurements > Cursor Measurements to assist in identifying individual points
+		\item The vertical lines which appear may be dragged left and right to select points and specific data is given in the Cursor Measurements box on the right of the scope window
+		\item Use the following Matlab code to simulate the ITD model
+		\end{enumerate}
+	\includematlab{prac1.m}{part2}
 \end{frame}
 
 
+\begin{frame}{Next week}
+	This week you derived a state-space model of the inertia disk and characterised its output as an ITD model.
+		
+	When we start looking at controlling a system to reach a desired output we will see that deriving models or characterising output responses give us methods of determining good initial control gains for our controllers. Next week we will be introduced to the concept of feedback to control the inertia disk to reach a desired angle. 
+\end{frame}
 
 
-\SUMMARYFRAME
 
 \end{document}

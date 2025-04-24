@@ -5,35 +5,37 @@
 
 \begin{frame}
 \frametitle{Introduction}
-In this practical, ...
+In this practical, you will be introduced to the concept of feedback control including proportional feedback (P), integral feedback (I), and derivative feedback (D).
 
 \vfill
 
 This practical will consist of the following parts:
 \begin{itemize}
-\item ...
+\item Feeding back the output
+\item Manual tuning
 \end{itemize}
 \end{frame}
 
-\SUBCONCEPT{Feeding back the output}
 
+\SUBCONCEPT{Feeding back the output}
 
 \begin{frame}{Feedback}
 \begin{itemize}
-\item We have seen that a constant voltage input into the QUBE with the inertia disk results in an increasing angular displacement forever. 
-\item In the case that we wish to control this angle to a particular value, this response is not very helpful and we must implement feedback control. 
-\item We will begin by studying the effects of feeding back a proportion of the state error, the state errors derivative, and the integral of the state error. 
-\item Once feedback has been incorporated, the input signal provides the desired output angle for the QUBE. 
-\item For this practical, leave the input signal as a step response of $1$, which results in a desired angle of $1$ radian.
+\item We have seen that a constant voltage input into the QUBE with the inertia disk results in an increasing angular displacement forever
+\item In the case that we wish to control this angle to a particular value, this response is not very helpful and we must implement feedback control
+\item We will begin by studying the effects of feeding back a proportion of the state error, the state errors derivative, and the integral of the state error
+\item Once feedback has been incorporated, the input signal provides the desired output angle for the QUBE
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Using proportional feedback}
-To implement a proportional gain $K_p$ to control the disk, add a gain block along with a Sum block and Slider Gain block to construct the following model. Note the proportional gain uses difference between output and the step signal to generate the “error” signal which drives the motor. The plant will then force the motor angle towards the value of the step input. The Slider Gain block is useful for adjustments during operation but is optional.\\
-
-You should change the step value to something other than one. Double click on the step block and change the Final value to π/2(in Matlab/Simulink, you may use ‘pi’ for the value of pi).
+First let us implement a proportional feedback with gain $K_p$ to control the disk
+\begin{enumerate}
+	\item In Simulink, add a Gain block along with a Sum block and Slider Gain block as in the figure in the following slide
+	\item You should change the step value to something other than one, double click on the Step block and change the Final value to $\tfrac{\pi}{2}$ (in Matlab/Simulink, you may use ‘pi’ for the value of pi)
+\end{enumerate}
+Note the proportional gain uses difference between output and the step signal to generate the “error” signal which drives the motor. The plant will then force the motor angle towards the value of the step input. The Slider Gain block is useful for adjustments during operation but is optional.
 	
-
 \textbf{Proportional control uses the \textit{present} error of the state, and acts like a spring.}
 	
 \end{frame}
@@ -46,7 +48,7 @@ You should change the step value to something other than one. Double click on th
 		\includegraphics[width=9cm]{prac1_prop_control.png}
 		\caption{Applying proportional control to the system.}
 	\end{figure}
-	You’ll also need to select an appropriate $K_p.$ Try some large and some smaller values until you get a feel for what each of these does. You are effectively incorporating a virtual spring where $K_p$ is your stiffness. Changing the stiffness in many mechanical devices changes the way systems behave and often dictate important resonances. Hence, adding a virtual spring can be used to accomplish the same result.
+	You’ll need to select an appropriate $K_p.$ Try some large and some smaller values until you get a feel for what each of these does. You are effectively incorporating a virtual spring where $K_p$ is your stiffness. Changing the stiffness in many mechanical devices changes the way systems behave and often dictate important resonances. Hence, adding a virtual spring can be used to accomplish the same result.
 \end{frame}
 
 
@@ -54,15 +56,27 @@ You should change the step value to something other than one. Double click on th
 
 \begin{frame}{Using derivative feedback}
 \textcolor{red}{Simulink diagram with PD control}\\
-After finding a good $K_p$ we are ready to additionally implement derivative control with gain $K_d$ by feeding back the derivative of the state error (the error angular velocity in this case). This can be facilitated through adding a Derivative block in Simulink. As we are working with discretised values of angle from the angular encoder, we must first filter our signal using a low-pass filter as we saw in Week 1.\\
+After finding a good $K_p$ we are ready to additionally implement derivative control with gain $K_d$ by feeding back the derivative of the state error (the error angular velocity in this case).
 
-\textbf{Derivative control uses the \textit{future} error of the state, and acts like a damper.}
+\begin{enumerate}
+	\item Add a Gain block along with a Derivative block to feed back the derivative of the error signal
+	\item As we are working with discretised values of angle from the angular encoder, we must first filter our signal using a low-pass filter as we saw in Week 1
+	\item Find an appropriate value for $K_d$ through experimentation
+\end{enumerate}
+
+\textbf{Derivative control uses the \textit{future} error of the state, and acts like a damper opposing the velocity of the state.}
 \end{frame}
 
 
 \begin{frame}{Using integral feedback}
 \textcolor{red}{Simulink diagram with PID control}\\
-After appropriate selction of $K_d$, integral control with gain $K_i$ can be introduced by feeding back the integral of the state error. The error signal can be integrated by using a Transfer Fcn block with an integrator, $G(s)=\tfrac{1}{s}$.\\
+After appropriate selction of $K_d$, integral control with gain $K_i$ can be introduced by feeding back the integral of the state error. 
+
+\begin{enumerate}
+	\item The error signal can be integrated by using a Transfer Fcn block with an integrator, $G(s)=\tfrac{1}{s}$, as well as a Gain block
+	\item Find an appropriate value for $K_i$ through experimentation
+\end{enumerate}
+
 
 \textbf{Integral control uses the \textit{past} error of the state.}
 \end{frame}
@@ -81,6 +95,5 @@ This week you learned how to apply P, I, and D feedback terms in a controller.
 Often it is very hard to tune the three gains without a good starting point. We will see next week how a model of the plant or characterisation of the output response of the plant can present gains that offer acceptable control as a precursor to manual tuning. 
 \end{frame}
 
-\SUMMARYFRAME
 
 \end{document}

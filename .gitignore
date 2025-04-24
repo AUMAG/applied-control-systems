@@ -1,6 +1,7 @@
 
 *.pdf
 
+*.asv
 *.aux
 *-blx.bib
 *.log
