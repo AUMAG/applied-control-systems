@@ -1,24 +1,28 @@
 \documentclass[9pt]{beamer-control}
 \usepackage{beamer-control-prac}
 \begin{document}
+\TOPIC[3]{Frequency Domain}
 \CONCEPT[5]{Week 5: Frequency domain modelling}
 
 \begin{frame}
 \frametitle{Introduction}
-In this practical, ...
+In this practical, we will move onto the compound pendulum system and be introduced to frequency domain methods.
 
 \vfill
 
 This practical will consist of the following parts:
 \begin{itemize}
-\item ...
+\item Second-order systems
+\item Controlling the plant
+\item Frequency response
 \end{itemize}
 \end{frame}
 
 \SUBCONCEPT{Second-order systems}
 
 \begin{frame}{Compound pendulum}
-	
+
+In this practical we will use the compound pendulum system.
 Grab the yellow compound pendulum and position the QUBE on its side, such that the pendulum is appropriately affected by gravity.\\
 
 \textcolor{red}{Image of compound pendulm and QUBE}
@@ -27,62 +31,126 @@ Grab the yellow compound pendulum and position the QUBE on its side, such that t
 
 
 \begin{frame}{Compound pendulum}
+	We begin by deriving a model of the system.
 The nonlinear equation of motion for the pendulum is 
 \[\tau(t) = (J_m+J_h+J_p) \ddot{\theta}(t) + D_r \dot{\theta}(t) + m_b r_p g \sin \left(\theta (t)\right), \]
 where $\tau$ is the torque applied to the joint and $\theta$ is the angular displacement of the pendulum. The constants in this equation are the moments of inertia of the mass, hub, and pendulum $J_m$, $J_h$, and $J_p$, the mass of the bob $m_b$, centre of gravity of the pendulum $r_p$, viscous damping of the pivot $D_r$, and the gravitational acceleration $g$.\\
 
-Using the small angle approximation, applying th Laplace transform, and rearranging the second-order transfer function for the compound pendulum is 
-\[ G(s) = \frac{\theta(s)}{\tau (s)} = \frac{1}{(J_m+J_h+J_p)s^2 + D_r s + M_b r_p g } .\]
+Using the small angle approximation, applying the Laplace transform, and rearranging the second-order transfer function for the compound pendulum is 
+\[ G(s) = \frac{\theta(s)}{\tau (s)} = \frac{1}{(J_m+J_h+J_p)s^2 + D_r s + m_b r_p g } .\]
 
 \end{frame}
 
 
 \begin{frame}{Compound pendulum}
-The constants for the QUBE compound pendulum plant have values XXXXXXX.
-The moment of inertia of a pendulum is given by $J_p = m_b r_p^2+ \tfrac{1}{2}m_b r_b^2$.
+The parameter values for the QUBE compound pendulum are $R_m=8.4\Omega$, $k_m=0.042$ V/(rad/s), $D_r=2\times 10^{-5}$ N.m.s/rad, $J_m = 4\times 10^{-6}$ kg.m$^2$, $J_h = 0.65 \times 10^{-6}$ kg.m$^2$, $m_b=0.03$ kg, $m_p=0.095$ kg, $r_b = 0.0127$ m, and $r_p = 0.035$ m.
+The moment of inertia of a pendulum is given by the parallel axis theorem as $J_p = m_b r_p^2+ \tfrac{1}{2}m_b r_b^2$.
 
-
-\end{frame}
-
-\begin{frame}{Compound pendulum}
 The second-order transfer function may be transformed into a two-dimensional linear state-space model given by the matrices
-\[\mathbf{A} = , \mathbf{B} = , \mathbf{C} = , \mathbf{D}=  \]
+\[
+\mathbf{A}=\begin{bmatrix}
+	0 & 1 \\
+	-\tfrac{m_br_p g }{J_m+J_h+J_p} & -\left(\tfrac{R_m D_r + k_m^2}{R_m(J_m+J_h+J_d)}\right)
+\end{bmatrix},
+\mathbf{B} = \begin{bmatrix}
+	0 \\ \tfrac{k_m}{R_m(J_m+J_h+J_p)}
+\end{bmatrix}, 
+\mathbf{C} = \begin{bmatrix}
+	1 & 0
+\end{bmatrix},
+\mathbf{D} = \begin{bmatrix}
+	0
+\end{bmatrix}
+\]  
+where 
+\[\mathbf{x} = \begin{bmatrix}
+	\theta_m \\ \omega_m
+\end{bmatrix}
+\quad , \quad \mathbf{y} = \theta_m \quad  \text{and} \quad u=v_m.\]
 \end{frame}
 
 
+
+\SUBCONCEPT{Controlling the plant}
 
 \begin{frame}{Pole placement}
 
 \textcolor{red}{Test this out with compound pendulum.}
 
-Given the transfer function model of the compound pendulum, one method of control may be to design proportional feedback such that the resulting poles of the closed loop system provide a desired response. Using the MATLAB command K=place(A,B,p), determine the feedback gain required to move the poles such that the 2\% settling time is XXXX with a damping ratio of XXXX. \\
+Given the transfer function model of the compound pendulum, one method of controlis to design proportional feedback such that the resulting poles of the closed loop system provide a desired response
+
 You may use the following relation
 \[ T_{2\%} = \frac{4}{\zeta_n \omega_n}. \]
 
+\begin{enumerate}
+	\item Calculate the position of the desired poles given that we require a 2\% settling time of XXXX with a damping ratio of XXXX. 
+	\item Use the Matlab command K=place(A,B,p) to determine the required gains 
+	\item Implement this controller in Simulink and assess if you have met the requirements
+\end{enumerate}
+
 Why is pole placement not a robust control strategy?
 
-
 \end{frame}
 
+
+\begin{frame}{Additional control methods}
+As an extension, choose one of the following control methods to implement on the compound pendulum system - PID or LQR.
+
+We have used PID in the last few weeks and shown that it may offer robust control without the need for a first-principles model of the plant.
+
+The Linear Quadratic Regulator (LQR) control strategy uses the state-space model of our plant and finds optimal gains (in this case PD gains) that minimises a given cost function.
+\end{frame}
 
 \begin{frame}{PID Control}
-Now implement PID control, model response as a FOTD to find initial gains?
+Similar to last week, we may characterise the open loop output response of the pendulum system as an FOTD model.
+
+\begin{enumerate}
+	\item Characterise the step response of the open-loop compound pendulum as a FOTD model by finding the parameters $a$, $T$, and $L$
+	\item Using these FOTD parameters, select a PID tuning law and determine the corresponding PID gains
+	\item Run the system in close loop with a step input of $\tfrac{\pi}{4}$
+	
+\end{enumerate}
+
+After implementing the tuned PID gains, manually tune your controller to improve your step response.
+
 \end{frame}
 
 
+\begin{frame}{LQR Control}
+The state-space model may be used to derive optimal control gains that minimise the cost function
+\[J = \int^\infty _0 \mathbf{x}^\mathrm{T} \mathbf{Q} \mathbf{x} + \mathbf{u}^\mathrm{T} \mathbf{R} \mathbf{u}  \, \mathrm{d} t\]
+with state and input weight matrices here chosen to be 
+\[ \mathbf{Q} = \begin{bmatrix}
+	1 & 0 \\ 0 & 1
+\end{bmatrix}, \quad \mathbf{R} = 1 .\]
 
-\begin{frame}{Frequency response}
-Given an input frequency, what is the phase and amplitude? \\
+\begin{enumerate}
+	\item The optimal state-feedback controller can be found using the Matlab function K=lqr(A,B,Q,R)
+	\item Run the system in close loop with a step input of $\tfrac{\pi}{4}$
+\end{enumerate}
 
-This will prepare us for the practical next week in which we will experimentally analyse the frequency response of the compound pendulum plant.
+After implementing these gains on the pendulum system, play around with varying the entries of $\mathbf{Q}$ and $\mathbf{R}$ to achieve better response.
+\end{frame}
+
+
+\SUBCONCEPT{Frequency response}
+
+\begin{frame}{Response to a sinusoid input}
+With a controller implemented and optimised, we often would like to understand how well our controller can follow a given input. One way to assess this that gives us more information than just looking at the systems response to a step input is to input a periodic signal and analyse the phase and magnitude of the output.
+
+\begin{enumerate}
+	\item Replace the Step block in Simulink with a Signal Generator block, change to a sinusoid signal, and set the frequency to 1 Hz and the amplitude to $\tfrac{\pi}{4}$
+	\item Run the Simulink and assess how well the controller follows this signal by plotting both the input and output signals on one Scope
+\end{enumerate}
+
 \end{frame}
 
 
 
 \begin{frame}{Next week}
-	This week you .....
+	This week we moved onto the compound pendulum system, derived its model, and controlled it with several different strategies. We also analysed the performance of the controller at following a sinusoidal input.
 	
-	Introductory sentence...... Next week ..... 
+	Next week we will experimentally analyse the frequency response of the compound pendulum plant to a range of frequencies to better assess and understand the performance of a system.
 \end{frame}
 
 

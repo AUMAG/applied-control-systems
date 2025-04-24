@@ -1,23 +1,27 @@
 \documentclass[9pt]{beamer-control}
 \usepackage{beamer-control-prac}
 \begin{document}
+\TOPIC[3]{Frequency Domain}
 \CONCEPT[6]{Week 6: Frequency domain analysis}
 
 \begin{frame}
 \frametitle{Introduction}
-In this practical, ...
+In this practical, we will perform frequency domain analysis of the controlled compound pendulum system using Bode, Nyquist and Nichols plots.
 
 \vfill
 
 This practical will consist of the following parts:
 \begin{itemize}
-\item ...
+\item Bode, Nyquist, and Nichols
+\item Theoretical analysis
+\item Experimental analysis
 \end{itemize}
 \end{frame}
 
-\SUBCONCEPT{Bode, Nichols, and Nyquist}
+\SUBCONCEPT{Bode, Nyquist, and Nichols}
 
 \begin{frame}{Bode}
+Given an input frequency $\omega$ of unity amplitude, the two Bode plots tells us the amplitude and phase of the output response.
 \begin{itemize}
 \item a
 \item b
@@ -25,7 +29,9 @@ This practical will consist of the following parts:
 \textcolor{red}{Use figures from slide notes}
 \end{frame}
 
-\begin{frame}{Nichols}
+
+\begin{frame}{Nyquist}
+The Nyquist plot provides the same information as the Bode plot but represents it by treating it in polar coordinates, where the distance from the origin represents the output amplitude, and the angle made with the horizontal axis is the phase.
 	\begin{itemize}
 		\item a
 		\item b
@@ -33,32 +39,62 @@ This practical will consist of the following parts:
 \textcolor{red}{Use figures from slide notes}
 \end{frame}
 
-\begin{frame}{Nyquist}
+\begin{frame}{Nichols}
+The Nichols plot 
 	\begin{itemize}
 		\item a
 		\item b
 	\end{itemize}
-\textcolor{red}{Use figures from slide notes}
+	\textcolor{red}{Use figures from slide notes}
 \end{frame}
+
+
 
 \SUBCONCEPT{Theoeretical analysis}
 
 \begin{frame}{Frequency analysis}
-Based on the given model of the compound pendulum, use MATLAB to plot the Bode, Nichols, and Nyquist curves.
+Based on the given model of the compound pendulum, use Matlab to plot the Bode, Nichols, and Nyquist curves.
+
+\includematlab{prac6.m}{part1} 
+
 \end{frame}
 
 \SUBCONCEPT{Experimental analysis}
 
 \begin{frame}{Frequency analysis}
-The Bode, Nichols, and Nyquist curves can all be constructed from knowledge of the phase and amplitude of the output signal of a plant driven at a range of input frequencies
+The Bode, Nichols, and Nyquist curves can all be constructed from knowledge of the phase and amplitude of the output signal of a plant driven at a range of input frequencies. 
 
+\begin{itemize}
+	\item The code on the following slides will produce points on the three diagrams to compare these experimental results with the previously plotted theoretical plots
+	\item You will need to provide the name of your Simulink model, a range of frequencies (around 10 different frequencies in rad/s) to run the system at, and the name of your input and output signals as given by the To Workspace blocks in Simulink
+	\item Using knowledge of how the Bode, Nyquist and Nichols plots are constructed, fill in the places in the code surrounded by <> to populate your experimental points on the curves
+\end{itemize}
+ 
+\end{frame}
+
+\begin{frame}{Frequency analysis}
+	\includematlab{prac6.m}{part2} 
+\end{frame}
+
+\begin{frame}{Frequency analysis}
+\includematlab{prac6.m}{part3} 
+\end{frame}
+
+
+\begin{frame}{System characteristics}
+These plots provide us with a wealth of information of our system such as 
+\begin{itemize}
+	\item Resonant frequency
+	\item Stability 
+	\item Gain and phase margins
+\end{itemize}
 \end{frame}
 
 
 \begin{frame}{Next week}
-	This week you .....
+	This week you theoretically and experimentally analysed the frequency response of the compound pendulum system using Bode, Nyquist and Nichols plots. 
 	
-	Introductory sentence...... Next week ..... 
+	This concludes the standard practical topics using the QUBEs and next week we will begin the practical project using the ping pong rig.
 \end{frame}
 
 

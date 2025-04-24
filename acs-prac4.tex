@@ -1,53 +1,142 @@
 \documentclass[9pt]{beamer-control}
 \usepackage{beamer-control-prac}
 \begin{document}
+\TOPIC[2]{Feedback Control}
 \CONCEPT[4]{Week 4: Feedback design}
 
 \begin{frame}
 \frametitle{Introduction}
-In this practical, ...
+In this practical, the process of characterising a plants output response will be used to derive initial gains for a PID controller for both the angular displacement and velocity of the inertia disk.
 
 \vfill
 
 This practical will consist of the following parts:
 \begin{itemize}
-\item ...
+\item Controlling angular displacement
+\item Controlling angular velocity
 \end{itemize}
 \end{frame}
 
-\SUBCONCEPT{Tuning}
+
+
+\SUBCONCEPT{Controlling angular displacement}
+
+\begin{frame}{Tuning a displacement controller}
+In previous weeks we have characterised the angular output of the QUBE inertia disk as an Integrator with Time Delay (ITD) model. From this output characterisation we can use offline tuning laws to set $K_p$, $K_i$, and $K_d$ which can be found at the end of this document.
+
+\begin{enumerate}
+\item Find the ITD parameters $a$ and $L$ of the inertia disk model 
+\item Using the Ziegler-Nichols tuning law, calculate the corresponding PID gains
+\item Run the plant and controller with these gains and assess the performance to a step input of $\tfrac{\pi}{2}$
+\item Repeat with the ITD Chien-Hrones-Reswick tuning law and compare
+\end{enumerate}
+
+Which offers the better performance?
+
+
+\end{frame}
+
+
+
+
+\SUBCONCEPT{Controlling angular velocity}
+
+\begin{frame}{Tuning a speed controller}
+Suppose we instead wish to control the angular velocity of the inertia disk to introduce `speed control'. 
+
+\begin{enumerate}
+	\item First we need to measure the velocity of the inertia disk, which can be facilitated through adding in a low-pass filter and a Derivative block, additionally connect this to a Scope
+	\item You will see after running the Simulink file that In this case the ITD model is not a great fit, we instead need to use the First Order Time Delay (FOTD) model which is on the following slide
+	\item Calculate the FOTD parameters $a$, $T$, and $L$, and using the FOTD Chien-Hrones-Reswick tuning law calculate the corresponding PID gains
+	\item Run the plant and controller with these gains and assess the performance to a step input of $1$
+	\item Repeat with the Cohen-Coon tuning law and compare
+	
+\end{enumerate}
+
+\textcolor{red}{Simulink diagram}
+
+\end{frame}
+
+\begin{frame}{Tuning a speed controller}
+	\begin{figure}
+	\centering
+	\includegraphics[width=8cm]{prac4_fotd.png}
+	\caption{First Order Time Delay (ITD) model.}
+\end{figure}
+\end{frame}
+
+
+\SUBCONCEPT{Tuning laws}
 
 \begin{frame}{Tuning laws}
-In previous weeks we have characterised the output of the QUBE intertia disk as an Integrator with Time Delay (ITD) model. From this output characterisation we can use the following offline tuning laws to set $K_p$, $K_i$, and $K_d$.\\
-\textbf{PID tuning laws}
-\begin{itemize}
-\item Ziegler-Nichols
-\item Chien-Hrones-Reswick
-\end{itemize}
-Using the definitions in the notes and your previously found ITD parameters, find the PID gains using both tuning laws.
+	\centering
+	The time constants relate to the gains by $K_i= \frac{K_p}{T_i}$ and $K_d = K_p T_d$\\
+	\vfill
+	
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			ITD tuning laws
+			\begin{table}
+				\centering
+				\begin{tabular}{|c|c|c|}
+					\hline
+					$K_p$ & $T_i$ & $T_d$\\
+					\hline
+					$\frac{1.2}{a}$ & $2L$ & $\frac{L}{2}$\\
+					\hline	
+				\end{tabular}
+				\caption{Ziegler-Nichols tuning law}
+			\end{table}
+			
+			\begin{table}
+				\centering
+				\begin{tabular}{|c|c|c|}
+					\hline
+					$K_p$ & $T_i$ & $T_d$\\
+					\hline
+					$\frac{0.95}{a}$ & $2.4 L$ & $0.42 L$\\
+					\hline	
+				\end{tabular}
+				\caption{ITD Chien-Hrones-Reswick tuning law (0\% overshoot)}
+			\end{table}
+		\end{column}
+		\begin{column}{0.5\textwidth} 
+			
+			FOTD tuning laws
+			\begin{table}
+				\centering
+				\begin{tabular}{|c|c|c|}
+					\hline
+					$K_p$ & $T_i$ & $T_d$\\
+					\hline
+					$\frac{0.6}{a}$ & $T$ & $\frac{L}{2}$\\
+					\hline	
+				\end{tabular}
+				\caption{FOTD Chien-Hrones-Reswick tuning law (0\% overshoot)}
+			\end{table}
+			
+			\begin{table}
+				\centering
+				\begin{tabular}{|c|c|c|}
+					\hline
+					$K_p$ & $T_i$ & $T_d$\\
+					\hline
+					\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 \tau}{1-\tau} \right)$} & \tiny{$ L\left( \frac{2.5-2\tau}{1-0.39\tau} \right) $} & \tiny{$L \left( \frac{0.37-0.37\tau}{1-0.81\tau} \right)$}\\
+					\hline	
+				\end{tabular}
+				\caption{Cohen-Coon tuning law where $\tau=\frac{L}{L+T}$}
+			\end{table}
+		\end{column}
+	\end{columns}
+	
+	
 \end{frame}
 
-\begin{frame}{Tuning laws}
-Using both Ziegler-Nichols and Chien-Hrones-Reswick tuning laws, assess which offers the better performance.
-\end{frame}
-
-\SUBCONCEPT{Extensions}
-
-\begin{frame}{Linear quadratic regulator?}
-\textcolor{red}{Include this? If so, check Q and R}\\
-The state-space model derived in previous weeks may also be used to derive control gains. Using state and input weight matrices, 
-\[ \mathbf{Q} = \begin{bmatrix}
-	1 & 0 \\ 0 & 1
-\end{bmatrix}, \quad \mathbf{R} = 1 ,\]
-an optimal state-feedback controller (with just proportional control) can be found using the MATLAB function K=lqr(A,B,Q,R).\\
-After implementing these gains on the inertia disk system, play around with varying the entries of $\mathbf{Q}$ and $\mathbf{R}$.
-
-\end{frame}
 
 \begin{frame}{Next week}
-	This week you .....
+	This week you characterised the angular displacement and velocity of the inertia disk system as ITD and FOTD models respectively to derive appropriate PID gains using tunings laws.
 	
-	Introductory sentence...... Next week ..... 
+	Next week we will begin the practical module on the frequency domain, move onto the compound pendulum QUBE system, and look at further control methods.
 \end{frame}
 
 

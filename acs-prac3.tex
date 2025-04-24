@@ -1,6 +1,7 @@
 \documentclass[9pt]{beamer-control}
 \usepackage{beamer-control-prac}
 \begin{document}
+\TOPIC[2]{Feedback Control}
 \CONCEPT[3]{Week 3: Introduction to feedback}
 
 \begin{frame}
@@ -42,7 +43,7 @@ Note the proportional gain uses difference between output and the step signal to
 
 
 
-\begin{frame}
+\begin{frame}{Using proportional feedback}
 	\begin{figure}
 		\centering
 		\includegraphics[width=9cm]{prac1_prop_control.png}
@@ -86,13 +87,20 @@ After appropriate selction of $K_d$, integral control with gain $K_i$ can be int
 \SUBCONCEPT{Manual tuning}
 
 \begin{frame}{Hand tuning the gains}
-Now that we have fully implemented PID control it is best practice to optimise the response of the plant by manually tuning the gains. To assess how altering the gains affects the performance of the controller, make sure to only change one gain between tests. Try to achieve a step response that has minimal oscillation, has an overshoot less than 10\%, and a settling time less than 0.5 seconds.\\
+Now that we have fully implemented PID control it is best practice to optimise the response of the plant by manually tuning the gains. 
+
+\begin{enumerate}
+	\item Adapt the PID gains to optimise performance of the controller (you may start with large variations say doubling or halving values, and then focus in with smaller variations)
+	\item To assess how altering the gains affects the performance of the controller, make sure to only change one of the three gains between tests
+	\item Try to achieve a step response that has minimal oscillation, has an overshoot less than 10\%, and a settling time less than 0.5 seconds
+\end{enumerate}
+
 \end{frame}
 
 \begin{frame}{Next week}
-This week you learned how to apply P, I, and D feedback terms in a controller.
+This week you learned how to apply P, I, and D feedback terms in a controller, and how to manually tune these gains.
 
-Often it is very hard to tune the three gains without a good starting point. We will see next week how a model of the plant or characterisation of the output response of the plant can present gains that offer acceptable control as a precursor to manual tuning. 
+Often it is very hard to tune the three gains without a good starting point. We will see in the following weeks how a model of the plant or characterisation of the output response of the plant can present initial control gains that offer acceptable control as a precursor to manual tuning. 
 \end{frame}
 
 
