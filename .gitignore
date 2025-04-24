@@ -1,5 +1,5 @@
 
-*.pdf
+.DS_Store
 
 *.asv
 *.aux
@@ -11,9 +11,9 @@
 *.synctex*
 *.snm
 
+# only top-level PDFs
+/*.pdf 
+
 _*
-
-.DS_Store
-
 */src/*
 */html/*
