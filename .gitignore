@@ -1,0 +1,15 @@
+
+*.pdf
+
+*.aux
+*-blx.bib
+*.log
+*.nav
+*.toc
+*.run.xml
+*.synctex*
+*.snm
+
+_*
+
+.DS_Store
