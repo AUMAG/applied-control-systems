@@ -197,24 +197,115 @@ q \\
 
 \SUBCONCEPT{Difference Equations}
 
-\begin{frame}{This is a slide}
+\begin{frame}{Continuous time vs discrete time}
+Continuous with $t$:
+\def\tt{{\color{gray}(t)}}
+\def\kk{{\color{gray}[k]}}
+\begin{align}
+\Deriv{x\tt}{t} &= f(x\tt,u\tt) & y\tt &= h(x\tt,u\tt)
+\end{align}
+Discrete with $k$:
+\begin{align}
+x[k{+}1] &= f[x\kk,u\kk] & y\kk &= h(x\kk,u\kk)
+\end{align}
+Time related by time step $h$:
+\begin{align}
+x[k] &= x(kh) & k &= 1,2,\dots
+\end{align}
+\end{frame}
+
+\begin{frame}
+\frametitle{Discrete state space equations}
+Also natural to write:
+\begin{align}
+x[k+1] &= Ax[k] + Bu[k] & y[k] &= Cx[k] + Du[k]
+\end{align}
+
+Comments:
 \begin{itemize}
-\item a
-\item b
+\item
+These are easier and more natural to calculate than continuous ODEs, but they are an approximation
+\item
+For discrete systems, $A$, $B$, \dots, change depending on the time step 
+\item
+You can learn control entirely from the discrete perspective; we want to consider both but are `continuous by default'
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Discrete PI Controller}
+\begin{align}
+u(t) &= K_p e(t) + K_i \underbrace{\int_o^t e(\tau) \dee \tau}_{u_i(t)} & \Deriv{u_i(t)}{t} &= e(t) \\
+u[k] &= K_p e[t] + K_i u_i[k]
+\end{align}
+What is $u_i[k]$ ?
+\begin{align}
+\Deriv{u_i(t)}{t} &\approx \frac{u_i(kh+h)-u_i(kh)}{h} = e(kh) \\
+u_i(kh+h) &= u_i(kh) + he(kh) \\
+u_i[k+1] &= u_i[k] + he[k]
+\end{align}
+\end{frame}
 
 
 \SUBCONCEPT{Simulation and Analysis}
 
-\begin{frame}{This is another slide}
-\begin{itemize}
-\item c
-\item d
-\end{itemize}
+\begin{frame}{Simulation --- our mass-spring-damper system again}
+\includegraphics[width=\linewidth]{figure3.10}
+
+Differential form:
+\begin{align}
+x &= \Matr{q\\\dot q} & \dot x & = \begin{bmatrix}\dot q\\- \frac cm\dot q - \frac km q\end{bmatrix}
+\end{align}
+$\to$ ODE solver (Matlab, Python)
 \end{frame}
 
+\begin{frame}
+\frametitle{Simulation --- ODE solvers}
+\begin{itemize}
+\item Many algorithms for numerically solving ODEs
+\item Simulink defaults to \texttt{ode45} with a variable time step solver
+\item Important to check solver is accurate -- convergence test(s)
+\end{itemize}
+\includegraphics[width=\linewidth]{figure3.11}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analysis --- stability}
+\begin{itemize}
+\item
+Simulations are great, but we sometimes want to analyse our ODEs meaningfully
+\item
+Lyapunov stability analysis:
+\end{itemize}
+\begin{align}
+V(x) &= \frac12kx_1^2 + \frac12mx_2^2 & \hspace{5cm}\\
+\Deriv{V(x)}{t} &= 
+\end{align}
+\vfill
+\vspace*{1cm}
+\begin{itemize}
+\item If $\dot V < 0$, the energy of the system is always decreasing, and the system is therefore \dots
+\end{itemize}
+\vspace*{-1cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analysis --- frequency response}
+For a linear time-invariant system such as: (i.e., separable ODE)
+\begin{gather}
+m\ddot q + c\dot q + k q = u
+\end{gather}
+We often consider the input/output relationship in terms of sinusoids of given frequency:
+\begin{gather}
+u(t) = A\sin(\omega t) \\
+q(t) = g(\omega)\sin(\omega t + \phi(\omega))
+\end{gather}
+The frequency response can be derived (see later) or simulated. For nonlinear systems, things get complicated
+\end{frame}
+
+\begin{frame}
+\frametitle{Analysis --- sketch of a frequency response}
+\end{frame}
 
 
 \SUMMARYFRAME
