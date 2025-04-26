@@ -15,6 +15,7 @@ hyperref
 listings
 matlab-prettifier
 pdfpages
+pdflscape
 pgf
 siunitx
 unicode-math
