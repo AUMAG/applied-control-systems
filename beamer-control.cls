@@ -96,6 +96,10 @@
 
 \usepackage{amsmath,array,booktabs,docmute,multicol,siunitx,bookmark,pdfpages,etoolbox}
 
+\usepackage{fontspec,unicode-math}
+
+\usepackage{listings,matlab-prettifier}
+
 \usepackage{beamer-control-maths}
 
 %%%%%%%%%%%%%%%%%
@@ -122,7 +126,6 @@
 %% FONTS
 %%%%%%%%%%%%
 
-\usepackage{fontspec,unicode-math}
 \setmainfont{texgyrepagella}[
   Extension = .otf ,
   UprightFont = *-regular ,
@@ -144,8 +147,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 %% MATLAB INTERFACING
 %%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{listings,matlab-prettifier}
 
 \newcommand\includematlab[2]{%
   \lstinputlisting

@@ -1,5 +1,6 @@
 
 collection-xetex
+xpackages
 
 amsmath
 beamer
@@ -9,5 +10,9 @@ booktabs
 docmute
 etoolbox
 hyperref
+listings
+matlab-prettifier
 pdfpages
 siunitx
+tikz
+
