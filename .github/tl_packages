@@ -1,2 +1,13 @@
 
 collection-xetex
+beamer
+
+amsmath
+booktabs
+docmute
+siunitx
+hyperref
+pdfpages
+etoolbox
+
+biblatex
