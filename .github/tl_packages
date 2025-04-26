@@ -9,9 +9,14 @@ bookmark
 booktabs
 docmute
 etoolbox
+fontspec
 hyperref
 listings
 matlab-prettifier
 pdfpages
 pgf
 siunitx
+unicode-math
+
+tex-gyre
+tex-gyre-math
