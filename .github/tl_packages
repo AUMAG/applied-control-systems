@@ -1,13 +1,13 @@
 
 collection-xetex
-beamer
 
 amsmath
+beamer
+biblatex
+bookmark
 booktabs
 docmute
-siunitx
+etoolbox
 hyperref
 pdfpages
-etoolbox
-
-biblatex
+siunitx
