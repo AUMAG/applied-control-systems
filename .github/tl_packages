@@ -1,6 +1,6 @@
 
 collection-xetex
-xpackages
+xparse
 
 amsmath
 beamer
@@ -13,6 +13,7 @@ hyperref
 listings
 matlab-prettifier
 pdfpages
+pgf
 siunitx
-tikz
+
 
