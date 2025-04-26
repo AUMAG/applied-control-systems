@@ -4,7 +4,7 @@ SHELL = bash
 BUILD = _build
 UPLOAD = _upload
 
-texsty   = $(wildcard *.cls) $(wildcard *.sty) applied-control-systems.tex
+texsty   = $(wildcard *.cls) $(wildcard *.sty) $(wildcard *.bib) applied-control-systems.tex
 
 notesrc  = applied-control-systems.tex
 topcsrc  = $(wildcard acs-0-*.tex) $(wildcard acs-1-*.tex) $(wildcard acs-2-*.tex) $(wildcard acs-3-*.tex)
