@@ -1,6 +1,6 @@
 
+collection-latex
 collection-xetex
-xparse
 
 amsmath
 beamer
@@ -15,5 +15,3 @@ matlab-prettifier
 pdfpages
 pgf
 siunitx
-
-
