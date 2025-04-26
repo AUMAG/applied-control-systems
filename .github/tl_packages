@@ -8,6 +8,7 @@ biblatex
 bookmark
 booktabs
 docmute
+environ
 etoolbox
 fontspec
 hyperref

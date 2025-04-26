@@ -94,7 +94,7 @@
 
 \PassOptionsToPackage{fleqn}{amsmath}
 
-\usepackage{amsmath,array,booktabs,docmute,multicol,siunitx,bookmark,pdfpages,etoolbox}
+\usepackage{amsmath,array,booktabs,docmute,environ,multicol,siunitx,bookmark,pdfpages,etoolbox}
 
 \usepackage{fontspec,unicode-math}
 
@@ -406,7 +406,6 @@
 }
 
 
-\usepackage{environ}
 \NewEnviron{SUMMARY}{%
   \xdef\SUMMARYFRAME{%
     \unexpanded{\setbeamercolor{background canvas}{bg=AUHighlight!15}}%
