@@ -64,7 +64,7 @@ $(UPLOAD)/%.pdf: $(BUILD)/%.pdf
 	mkdir -p $(UPLOAD)
 	cp -f $< $@
 
-$(BUILD)/%.pdf: %.tex $(texsty)
+$(BUILD)/%.pdf: %.tex
 	mkdir -p $(BUILD)
 	cp -f $< $(BUILD)/
 	cp -f $(texsty) $(BUILD)/
@@ -73,9 +73,11 @@ $(BUILD)/%.pdf: %.tex $(texsty)
 	cd $(BUILD); bibtex  $(basename $(notdir $@)) || echo "BibTeX may have failed."
 	cd $(BUILD); xelatex $(basename $(notdir $@))
 
-$(BUILD)/applied-control-systems.pdf: applied-control-systems.tex $(topcsrc) $(texsty)
+$(BUILD)/applied-control-systems.pdf: applied-control-systems.tex $(topcsrc)
 	mkdir -p $(BUILD)
 	cp -f $^ $(BUILD)/
+	cp -f $(texsty) $(BUILD)/
+	cp -f $(topcsrc) $(BUILD)/
 	cd $(BUILD); xelatex applied-control-systems
 	cd $(BUILD); bibtex applied-control-systems || echo "BibTeX may have failed."
 	cd $(BUILD); xelatex applied-control-systems
