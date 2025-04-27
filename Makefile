@@ -62,7 +62,7 @@ clean:
 $(UPLOAD)/%.pdf: $(BUILD)/%.pdf
 	mkdir -p $(UPLOAD)
 	cp -f $< $@
-	(cd $(UPLOAD); ../canvas-acs-upload-file.lua $*.pdf)
+	(cd $(UPLOAD); lua ../canvas-acs-upload-file.lua $*.pdf)
 	
 $(BUILD)/%.pdf: %.tex
 	mkdir -p $(BUILD)
