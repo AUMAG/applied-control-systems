@@ -30,7 +30,12 @@ jobs:
           cd canvas-lms-lua
           luarocks make
 
-      - name: Deploy
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v4
+        with:
+          package_file: .github/tl_packages
+
+      - name: Make and deploy
         run: |
           echo "Deploying release ${{ github.ref_name }}"
           make upload
@@ -38,7 +43,7 @@ jobs:
         env:
           CANVAS_API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
 
-      - name: Publish release
+      - name: Release
         uses: ghalactic/github-release-from-tag@v5
 
       - name: Upload artifacts to GitHub Release
