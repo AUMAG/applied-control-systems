@@ -21,29 +21,29 @@
   {figures/}
   {pracs/}
   {workshops/}
-  {concept1/}
-  {concept2/}
-  {concept3/}
-  {concept4/}
-  {concept5/}
-  {concept6/}
-  {concept7/}
-  {concept8/}
-  {concept9/}
-  % the following is to allow the makefile to build without having to manually copy everything:
+  {topic1/}
+  {topic2/}
+  {topic3/}
+  {topic4/}
+  {topic5/}
+  {topic6/}
+  {topic7/}
+  {topic8/}
+  {topic9/}
+  % the following is to allow the makefile to build without having to manually copy everything into _build/:
   {../matlab/}
   {../figures/}
   {../pracs/}
   {../workshops/}
-  {../concept1/}
-  {../concept2/}
-  {../concept3/}
-  {../concept4/}
-  {../concept5/}
-  {../concept6/}
-  {../concept7/}
-  {../concept8/}
-  {../concept9/}
+  {../topic1/}
+  {../topic2/}
+  {../topic3/}
+  {../topic4/}
+  {../topic5/}
+  {../topic6/}
+  {../topic7/}
+  {../topic8/}
+  {../topic9/}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
