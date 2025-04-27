@@ -6,33 +6,96 @@
 
 \begin{SUMMARY}
 \begin{itemize}
-\item Yyy
+\item A little more formal treatment of ODEs
+\item Different solution types 
 \end{itemize}
 \vfill References:
 \begin{itemize}
-\item \astrom{Chapter Z}
+\item \astrom{§5.1}
 \end{itemize}
 \end{SUMMARY}
 
 
 
-\SUBCONCEPT{This is a Subconcept}
+\begin{frame}{Recalling our differential equations}
+Recall our ODE:
+\begin{align}
+\EqStd
+\end{align}
+Let's be more formal:
+\begin{align}
+x &= \Matr{x_1\\x_2\\\vdots\\x_n} \in \Reals^n & 
+u &= \Matr{u_1\\u_2\\\vdots\\u_p} \in \Reals^p & 
+y &= \Matr{y_1\\y_2\\\vdots\\y_q} \in \Reals^q 
+\end{align}
+Smooth maps:
+\begin{align}
+f&\colon\Reals^n \times \Reals^p \to \Reals^n &
+h&\colon\Reals^n \times \Reals^p \to \Reals^q
+\end{align}
+\end{frame}
 
-\begin{frame}{This is a slide}
+\begin{frame}
+\frametitle{Now add control}
+When we design a controller, the input $u$ is generally determined by the state:\footnote{Note: I don't like using uppercase here\dots}
+\begin{align}
+u &= \alpha(x) & \Deriv{x}{t} &= f(x,u) = f(x,\alpha(x)) \coloneq F(x) \label{eq:Fx}
+\end{align}
+At this point, $\alpha\colon\Reals^n \to \Reals^p$ could be any smooth nonlinear function 
+\bigskip
+
+If we can solve $\dot x=F(x)$ we know how the system behaves---what types of solution are possible?
+\end{frame}
+
+\begin{frame}
+\frametitle{Solution types}
 \begin{itemize}
-\item a
-\item b
+\item We are searching for a specific $x(t)$ which satisfies $\dot x(t)=F(x(t))$
+\item Usually care about \emph{initial value problems}
+\item Usually there is a unique solution for the particular system
+\item Usually there are sinusoids and exponential functions :)
 \end{itemize}
 \end{frame}
 
-
-\SUBCONCEPT{This is another Subconcept}
-
-\begin{frame}{This is another slide}
+\begin{frame}
+\frametitle{Example: damped oscillator}
 \begin{itemize}
-\item c
-\item d
+\item This linear system has a unique analytical solution
+\item Note that the solution depends on the damping ratio ($0<\zz<1$)
+\item D.E.s with non-unique solutions tend to be nonphysical
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Example: finite escape time}
+\begin{align}
+\dot x &= x^2 & x(t) &= \frac{1}{1-t}
+\end{align}
+\begin{itemize}
+\item What happens as $t\to1$ ?
+\item $x(t)$ has finite escape time
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Another example (not in the textbook)}
+\begin{align}
+\dot x &= x \\
+x(t)   &= \ee^{t} \\
+x(0)   &= \\
+x(t)|_{t\to\infty}&=
+\end{align}
+
+\vfill
+\hrulefill
+\vfill
+
+\begin{align}
+\dot x &= -x \\
+x(t)   &=  \\
+x(0)   &= \\
+x(t)|_{t\to\infty}&=
+\end{align}
 \end{frame}
 
 
