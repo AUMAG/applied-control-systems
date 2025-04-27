@@ -10,9 +10,12 @@ jobs:
 
   releasedeploy:
     name: Deploy and Release
+    
     runs-on: ubuntu-latest
+    environment: deploy
     permissions:
       contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
