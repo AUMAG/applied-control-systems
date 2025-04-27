@@ -1,15 +1,19 @@
-name: Deploy on Release
+name: Deploy and Release
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - "*"
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
 
+  releasedeploy:
+    name: Deploy and Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Lua
@@ -25,7 +29,19 @@ jobs:
 
       - name: Deploy
         run: |
-          echo "Deploying release ${{ github.event.release.tag_name }}"
+          echo "Deploying release ${{ github.ref_name }}"
           make upload
+          zip -r release.zip _upload/
         env:
           CANVAS_API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
+
+      - name: Publish release
+        uses: ghalactic/github-release-from-tag@v5
+
+      - name: Upload artifacts to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
