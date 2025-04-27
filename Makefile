@@ -36,9 +36,8 @@ help:
 	@echo '   workshops - PDFs for each workshops'
 	@echo '       notes - Combined lecture notes'
 	@echo '         all - All of the above'
-	@echo '      upload - Upload all PDFs to MyUni (ALL -- not smart!)'
-	@echo '   upload[*] - Make [*] as above and upload the results (only as needed -- smart!)'
-	@echo '       clean - Remove all build files'
+	@echo '   upload[*] - Make [*] as above (e.g. "uploadpracs" reqs "pracs") and upload the results'
+	@echo '       clean - Remove cruft in working directly and all _build/ files'
 	@echo '        edit - Edit this Makefile'
 
 edit:
@@ -56,9 +55,6 @@ uploadworkshops: $(uploadworkpdf)
 uploadnotes: $(uploadnotepdf)
 uploadall: uploadtopics uploadpracs uploadworkshops uploadnotes
 
-upload: $(uploadtopcpdf)
-	cd ../Canvas/; lua canvas-acs-upload.lua 
-
 clean:
 	rm -fv *.log *.aux *.nav *.snm *.gz *.toc *.vrb *-blx.bib *.run.xml
 	mkdir -p $(BUILD)
@@ -67,6 +63,7 @@ clean:
 
 $(UPLOAD)/%.pdf: $(BUILD)/%.pdf
 	mkdir -p $(UPLOAD)
+	@echo "\n\nUPLOAD\n\n"
 	lua canvas-acs-upload-file.lua $<  &&  cp -f $< $@
 
 $(BUILD)/%.pdf: %.tex
@@ -74,17 +71,19 @@ $(BUILD)/%.pdf: %.tex
 	cp -f $< $(BUILD)/
 	cp -f $(texsty) $(BUILD)/
 	cp -f $(topcsrc) $(BUILD)/
+	@echo "\n\nCOMPILE\n\n"
 	cd $(BUILD); xelatex $*
 	cd $(BUILD); bibtex  $* || echo "BibTeX may have failed."
 	cd $(BUILD); xelatex $*
+	echo "\n\nDone!\n\n"
 
 $(BUILD)/applied-control-systems.pdf: applied-control-systems.tex $(topcsrc)
 	mkdir -p $(BUILD)
 	cp -f $^ $(BUILD)/
 	cp -f $(texsty) $(BUILD)/
 	cp -f $(topcsrc) $(BUILD)/
+	@echo "\n\nCOMPILE\n\n"
 	cd $(BUILD); xelatex applied-control-systems
 	cd $(BUILD); bibtex  applied-control-systems || echo "BibTeX may have failed."
-	cd $(BUILD); xelatex applied-control-systems
-	echo "Done!"
-	date
+	cd $(BUILD); xelatex -interaction=batchmode applied-control-systems
+	echo "\n\nDone!\n\n"
