@@ -19,7 +19,7 @@ jobs:
       - name: Set up Lua
         uses: leafo/gh-actions-lua@v9
         with:
-          lua-version: '5.4'  # You can specify '5.1', '5.2', '5.3', '5.4', or 'luajit'
+          luaVersion: '5.4'  # You can specify '5.1', '5.2', '5.3', '5.4', or 'luajit'
 
       - name: Install Lua canvas library
         run: |
