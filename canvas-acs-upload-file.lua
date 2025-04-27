@@ -22,7 +22,7 @@ if path.extension(file_to_upload):lower() ~= ".pdf" then
 end
 
 
-local folder = "../_upload/"  
+local folder = "_upload/"  
 local files = dir.getfiles(folder)
 
 if files == nil then
