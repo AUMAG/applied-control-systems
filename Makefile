@@ -60,7 +60,7 @@ clean:
 	echo "The contents of this folder are auto-generated and can be safely deleted." > $(BUILD)/README.md
 
 $(UPLOAD)/%.pdf: $(BUILD)/%.pdf
-	cd $(BUILD); canvas-acs-upload-file.lua $*.pdf)
+	(cd $(BUILD); canvas-acs-upload-file.lua $*.pdf)
 	mkdir -p $(UPLOAD)
 	cp -f $< $@
 
