@@ -28,6 +28,7 @@ jobs:
         run: |
           git clone https://github.com/wspr/canvas-lms-lua
           cd canvas-lms-lua
+          luarocks install penlight 1.13.1
           luarocks make
 
       - name: Install TeX Live
@@ -38,7 +39,7 @@ jobs:
       - name: Make and deploy
         run: |
           echo "Deploying release ${{ github.ref_name }}"
-          make upload
+          make all
           zip -r release.zip _upload/
         env:
           CANVAS_API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}
