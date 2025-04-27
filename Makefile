@@ -37,6 +37,7 @@ help:
 	@echo '       notes - Combined lecture notes'
 	@echo '         all - All of the above'
 	@echo '      upload - Upload all PDFs to MyUni (ALL -- not smart!)'
+	@echo '   upload[*] - Make [*] as above and upload the results (only as needed -- smart!)'
 	@echo '       clean - Remove all build files'
 	@echo '        edit - Edit this Makefile'
 
@@ -61,23 +62,21 @@ upload: $(uploadtopcpdf)
 clean:
 	rm -fv *.log *.aux *.nav *.snm *.gz *.toc *.vrb *-blx.bib *.run.xml
 	mkdir -p $(BUILD)
-	mkdir -p $(UPLOAD)
 	rm -fv $(BUILD)/*.*
 	echo "The contents of this folder are auto-generated and can be safely deleted." > $(BUILD)/README.md
 
 $(UPLOAD)/%.pdf: $(BUILD)/%.pdf
 	mkdir -p $(UPLOAD)
-	cp -f $< $@
-	(cd $(UPLOAD); lua ../canvas-acs-upload-file.lua $*.pdf)
-	
+	lua canvas-acs-upload-file.lua $<  &&  cp -f $< $@
+
 $(BUILD)/%.pdf: %.tex
 	mkdir -p $(BUILD)
 	cp -f $< $(BUILD)/
 	cp -f $(texsty) $(BUILD)/
 	cp -f $(topcsrc) $(BUILD)/
-	cd $(BUILD); xelatex $(basename $(notdir $@))
-	cd $(BUILD); bibtex  $(basename $(notdir $@)) || echo "BibTeX may have failed."
-	cd $(BUILD); xelatex $(basename $(notdir $@))
+	cd $(BUILD); xelatex $*
+	cd $(BUILD); bibtex  $* || echo "BibTeX may have failed."
+	cd $(BUILD); xelatex $*
 
 $(BUILD)/applied-control-systems.pdf: applied-control-systems.tex $(topcsrc)
 	mkdir -p $(BUILD)
@@ -85,7 +84,7 @@ $(BUILD)/applied-control-systems.pdf: applied-control-systems.tex $(topcsrc)
 	cp -f $(texsty) $(BUILD)/
 	cp -f $(topcsrc) $(BUILD)/
 	cd $(BUILD); xelatex applied-control-systems
-	cd $(BUILD); bibtex applied-control-systems || echo "BibTeX may have failed."
+	cd $(BUILD); bibtex  applied-control-systems || echo "BibTeX may have failed."
 	cd $(BUILD); xelatex applied-control-systems
 	echo "Done!"
 	date
