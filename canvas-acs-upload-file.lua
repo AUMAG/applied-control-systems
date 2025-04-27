@@ -22,8 +22,12 @@ if path.extension(file_to_upload):lower() ~= ".pdf" then
 end
 
 
-local folder = "../Slides/_upload/"  
+local folder = "../_upload/"  
 local files = dir.getfiles(folder)
+
+if files == nil then
+  error("No files in upload folder: "..folder)
+end
 
 do
     file = file_to_upload
