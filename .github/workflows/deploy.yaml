@@ -28,11 +28,8 @@ jobs:
         run: |
           git clone https://github.com/wspr/canvas-lms-lua
           cd canvas-lms-lua
-          luarocks install penlight 1.13.1
+          luarocks install penlight
           luarocks make
-          pwd
-          luarocks config
-          ls -LR /home/runner/work/applied-control-systems/applied-control-systems/.luarocks/
 
       - name: Install TeX Live
         uses: zauguin/install-texlive@v4
