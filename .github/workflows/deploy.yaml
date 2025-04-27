@@ -39,7 +39,7 @@ jobs:
       - name: Make and deploy
         run: |
           echo "Deploying release ${{ github.ref_name }}"
-          make all
+          make uploadall
           zip -r release.zip _upload/
         env:
           CANVAS_API_TOKEN: ${{ secrets.CANVAS_API_TOKEN }}

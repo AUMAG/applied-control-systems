@@ -43,11 +43,17 @@ help:
 edit:
 	edit Makefile || bbedit Makefile
 
-topics: $(uploadtopcpdf)
-pracs: $(uploadpracpdf)
-workshops: $(uploadworkpdf)
-notes: $(uploadnotepdf)
+topics: $(buildtopcpdf)
+pracs: $(buildpracpdf)
+workshops: $(buildworkpdf)
+notes: $(buildnotepdf)
 all: topics pracs workshops notes
+
+uploadtopics: $(uploadtopcpdf)
+uploadpracs: $(uploadpracpdf)
+uploadworkshops: $(uploadworkpdf)
+uploadnotes: $(uploadnotepdf)
+uploadall: uploadtopics uploadpracs uploadworkshops uploadnotes
 
 upload: $(uploadtopcpdf)
 	cd ../Canvas/; lua canvas-acs-upload.lua 
