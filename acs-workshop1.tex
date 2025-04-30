@@ -3,12 +3,23 @@
 \begin{document}
 \CONCEPT[1]{Week 1: Introduction and System Modelling}
 
+\begin{SUMMARY}
+\begin{itemize}
+\item Matlab introduction
+\item Modelling an ODE in Matlab
+\item Simulink introduction
+\item Modelling an ODE in Simulink
+\item Save an output graph
+\end{itemize}
+\end{SUMMARY}
+
+
 \begin{frame}
 \frametitle{Introduction}
-In this workshop, we will introduce the Matlab and Simulink environments and use them to build some simple models of dynamical systems.
+In this workshop, we will introduce the Matlab and Simulink environments and use them to build and visualise some simple dynamical systems.
 \end{frame}
 
-\SUBCONCEPT{Matlab}
+\SUBCONCEPT{Matlab basics}
 
 \begin{frame}
 \frametitle{Why Matlab?}
@@ -79,6 +90,8 @@ In this workshop, we will introduce the Matlab and Simulink environments and use
 \end{enumerate}
 \end{frame}
 
+\SUBCONCEPT{ODE solving}
+
 \begin{frame}
 \frametitle{Mass-spring-damper}
 \begin{itemize}
@@ -122,5 +135,126 @@ In this workshop, we will introduce the Matlab and Simulink environments and use
 \includematlab{workshop1.m}{pz}
 \end{frame}
 
+\SUBCONCEPT{Simulink inputs and outputs}
+
+\begin{frame}
+\frametitle{Simulink introduction}
+\begin{itemize}
+\item Launch Simulink by typing \texttt{simulink} in the Command Window, or clicking New > `Simulink Model' in the GUI:
+\end{itemize}
+\begin{center}
+\includegraphics[height=0.5\textheight]{simulink_new_model}
+\end{center}
+\begin{itemize}
+\item
+Create and save the model with a filename like \texttt{topic1model.slx}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Create some blocks}
+\begin{itemize}
+\item Double click in the empty space and type `Sine' to insert a sinusoid source
+\item Double click and type 'Scope' to insert a graphing output (or `sink')
+\item Click the arrows to join the source to the scope. Then click \Mbutton{Run} and double click the Scope:
+\end{itemize}
+
+\centering
+\includegraphics[height=0.6\textheight]{topic1img1}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Setting up variables}
+\begin{itemize}
+\item
+Double click the Sine block and change the amplitude to \CODE{AA} and the frequency to \CODE{ww}
+\item
+Because these variables aren't (yet) defined in Matlab you'll see some red warning `glow'
+\item
+Create a new m-file called something like \texttt{topic1run.m} and define them:
+\end{itemize}
+\includematlab{workshop1.m}{slx}
+\begin{itemize}
+\item
+If you run this file, it will automatically run the Simulink model
+\item
+Now we want to get data out of the model, too
+\item
+More than one way to do this, simplest is with \Mbutton{To workspace} block
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Logging data from Simulink}
+\centering
+\includegraphics[width=0.5\textwidth]{topic1img_simout}
+\begin{itemize}
+\item
+Double click the \Mbutton{To workspace} block to change its variable name to \CODE{x}
+\item
+Below your \CODE{sim()} command, add:
+\end{itemize}
+\includematlab{workshop1.m}{slx2}
+\begin{itemize}
+\item
+Add a new variable \CODE{tmax = 20;} and figure out how to parameterise this in the Simulink model
+\item
+You can now set up a model in Simulink and produce results
+\end{itemize}
+
+\end{frame}
+
+\SUBCONCEPT{Simulink modelling}
+
+\begin{frame}
+\frametitle{Dynamic model in Simulink}
+There are lots of ways of creating dynamic models in Simulink, we start with the barest of basics:
+\[
+   \sum F = m\,\ddot x = - c\,\dot x - k\,x + f
+\]
+You'll need the following blocks:
+\begin{itemize}
+\item \Mbutton{Step}, \Mbutton{Sum}, \Mbutton{Gain}, \Mbutton{Integrator}, \Mbutton{To workspace}
+\item Double click the \Mbutton{Sum} to change it to be rectangular and have three inputs defined \CODE{+--}
+\item Rotate blocks with CTRL+R on Windows or CMD+R on Mac
+\end{itemize}
+
+\centering
+\includegraphics[width=0.8\linewidth]{topic1_sim_msd.pdf}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Dynamic model results}
+\begin{itemize}
+\item Save that Simulink model as \texttt{topic1msd.slx}
+\item Create a matching m-file \texttt{topic1run.m}:
+\end{itemize}
+\includematlab{workshop1.m}{slx3}
+\begin{itemize}
+\item Results shown over the page
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dynamic model results}
+\includegraphics[width=\linewidth,trim=0 200 0 200,clip]{topic1_msd_step.pdf}
+\end{frame}
+
+\begin{frame}
+\frametitle{Final Simulink comments}
+\begin{itemize}
+\item Internally Simulink is using the Matlab \CODE{ode45} solver (by default) --- but it's much easier to set up complex models with block diagrams like this
+\item Go to tab \Mbutton{Modeling} and click button \Mbutton{Model Settings} to improve fidelity
+\item E.g., \Mbutton{Solver details} > \Mbutton{Relative tolerance} = \texttt{1e6}\\
+      (yes, this can be parameterised too)
+\item Note the default step response starts at $t=1$ seconds --- nonstandard
+\end{itemize}
+\end{frame}
+
+\SUMMARYFRAME
 
 \end{document}

@@ -17,3 +17,7 @@
 _*
 */src/*
 */html/*
+
+*.autosave
+*.slxc
+slprj/
