@@ -182,7 +182,7 @@ If you run this file, it will automatically run the Simulink model
 \item
 Now we want to get data out of the model, too
 \item
-More than one way to do this, simplest is with \Mbutton{To workspace} block
+More than one way to do this, simplest is with \Mbutton{To Workspace} block
 \end{itemize}
 
 \end{frame}
@@ -193,7 +193,7 @@ More than one way to do this, simplest is with \Mbutton{To workspace} block
 \includegraphics[width=0.5\textwidth]{topic1img_simout}
 \begin{itemize}
 \item
-Double click the \Mbutton{To workspace} block to change its variable name to \CODE{x}
+Double click the \Mbutton{To Workspace} block to change its variable name to \CODE{x}
 \item
 Below your \CODE{sim()} command, add:
 \end{itemize}
@@ -211,13 +211,13 @@ You can now set up a model in Simulink and produce results
 
 \begin{frame}
 \frametitle{Dynamic model in Simulink}
-There are lots of ways of creating dynamic models in Simulink, we start with the barest of basics:
+There are lots of ways of creating dynamic models in Simulink; we start out only using low level block to model a mass-spring-damper system:
 \[
-   \sum F = m\,\ddot x = - c\,\dot x - k\,x + f
+   \sum F = m\ddot x = - c\dot x - kx + f
 \]
 You'll need the following blocks:
 \begin{itemize}
-\item \Mbutton{Step}, \Mbutton{Sum}, \Mbutton{Gain}, \Mbutton{Integrator}, \Mbutton{To workspace}
+\item \Mbutton{Step}, \Mbutton{Sum}, \Mbutton{Gain}, \Mbutton{Integrator}, \Mbutton{To Workspace}
 \item Double click the \Mbutton{Sum} to change it to be rectangular and have three inputs defined \CODE{+--}
 \item Rotate blocks with CTRL+R on Windows or CMD+R on Mac
 \end{itemize}
