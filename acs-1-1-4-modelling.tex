@@ -112,13 +112,13 @@ Natural frequency $\wn$ and damping ratio $\zz$:
 \begin{gather}
 \wn = \sqrt{\frac{k}{m}} \qquad \zz = \frac{c}{2\sqrt{km}} 
 \end{gather}
-Resonance frequency:
+Damped natural frequency:\footnote{Note that `resonance frequency' is slightly different: $\wres=\wn\sqrt{1-2\zz^2}$ !}
 \begin{align}
-\wres = \wn\sqrt{1-2\zz^2}
+\wdamp = \wn\sqrt{1-\zz^2}
 \end{align}
-Estimate resonance frequency $\wres$ with:
+Estimate damped natural frequency $\wdamp$ with:
 \begin{align}
-\wres \approx \frac{2\pi}{T_2-T_1}
+\wdamp \approx \frac{2\pi}{T_2-T_1}
 \end{align}
 $T_{1,2}$ are times of successive local maxima in the step response.
 \end{frame}
@@ -143,7 +143,7 @@ Estimate damping ratio $\zz$ with:
 \frametitle{Estimating the remaining parameters (if needed)}
 \begin{itemize}
 \item
-$\wn = \wres/\sqrt{1-2\zz^2} $
+$\wn = \wdamp/\sqrt{1-\zz^2} $
 \item
 $k = F_0/K$ --- Hooke's law
 \item
@@ -162,13 +162,13 @@ $c$ follows from $\zz$
 \begin{frame}
 \frametitle{Example}
 \begin{align}
-t_2-t_1&\approx \SI{16}{s} & \therefore~ \wres &\approx \SI{0.4}{rad/s} \\
+t_2-t_1&\approx \SI{16}{s} & \therefore~ \wdamp &\approx \SI{0.39}{rad/s} \\
 K &\approx \SI{0.5}{m},\quad F_0=\SI{20}{N} & \therefore~ k&\approx \SI{40}{N/m} \\
-d&=\frac{y_2-\StaticGain}{y_1-\StaticGain}\approx\frac{\SI{0.16}{m}}{\SI{0.1}{m}}=16 & \therefore~ \zz&\approx0.40  \\
-\wn &= \wres/\sqrt{1-2\zz^2} \approx \SI{0.33}{rad/s} & \therefore~ m &= k/\wn^2 = \SI{371}{kg} \\
-&& \therefore~c &= 2\zz\sqrt{km} \approx \SI{98}{kg/s}
+d&=\frac{y_2-\StaticGain}{y_1-\StaticGain}\approx\frac{\SI{0.16}{m}}{\SI{0.02}{m}}=8 & \therefore~ \zz&\approx0.31  \\
+\wn &= \wdamp/\sqrt{1-\zz^2} \approx \SI{0.38}{rad/s} & \therefore~ m &= k/\wn^2 = \SI{277}{kg} \\
+&& \therefore~c &= 2\zz\sqrt{km} \approx \SI{66}{kg/s}
 \end{align}
-This is not the same as the textbook --- I expect my numbers were poorly estimated :)
+This is not quite the same as the textbook --- I expect my numbers were poorly estimated :)
 
 \end{frame}
 

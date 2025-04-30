@@ -84,7 +84,7 @@ xticks([0,t0,10,t4,20,30,40,50])
 xticklabels(["$0$","$\tau$","","$\tau+T_{63}$","","","",""]);
 set(gca,TickLabelInterpreter="LaTeX",XTickLabelRotation=0)
 yticks([-a,0, 0.25, 0.5, 0.75, 0.63*y3, 1.25, 1.5])
-yticklabels(["$-a$","0","","","","$0.63 K$","","K"])
+yticklabels(["$-a$","0","","","","$0.63 K$","","$K$"])
 
 xlabel('Time, s')
 title('Amplitude response to step input')

@@ -6,7 +6,7 @@
 % $$ m\ddot x = - k x - c \dot x $$
 
 k = 10; % stiffness, N/m
-c = 1; % damping, kg/s
+c = 03; % damping, kg/s
 m = 2; % mass, kg
 
 function dq = mass_spring_damper(q,param)
