@@ -25,5 +25,5 @@ jobs:
         with:
           name: slides
           path: |
-            _upload/*.pdf
+            _build/*.pdf
           retention-days: 3
