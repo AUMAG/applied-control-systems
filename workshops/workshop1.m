@@ -90,3 +90,37 @@ plot(t,y);
 xlabel("Time, s"); ylabel("Displacement, m")
 title("Step response")
 %</pz>
+
+%<*slx>
+%% Simulink setup
+
+clearvars
+
+AA = 2;
+ww = 2*pi/10;
+simout = sim("topic1model.slx");% <- name of your Simulink model
+
+%</slx>
+
+%<*slx2>
+figure(1); clf; hold on
+box on; grid on
+plot(simout.tout,simout.x.data)
+%</slx2>
+
+
+reltol = 1e3;
+
+%<*slx3>
+clearvars
+m = 1; c = 2; k = 5;
+simout = sim("topic1msd.slx");% name of your Simulink model
+
+figure(2); clf; hold on
+box on; grid on
+plot(simout.tout,simout.x.data,".-")
+xlabel("Time $t$, s", Interpreter="LaTeX")
+ylabel("Displacement $x$, m",Interpreter="LaTeX")
+
+saveas(gcf,"topic1_msd_step.pdf")% save graph to PDF file
+%</slx3>
