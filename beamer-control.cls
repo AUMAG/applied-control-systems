@@ -140,6 +140,8 @@
 %%%%%%%%%%%%
 
 \usepackage{tikz}
+\usepackage[american]{circuitikz}
+
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes,arrows,calc}
 \usetikzlibrary{patterns,decorations.pathmorphing}

@@ -73,6 +73,26 @@ Bu = \begin{bmatrix} 0\\ 1/m\end{bmatrix}\begin{bmatrix} f\end{bmatrix} = \begin
 \end{frame}
 
 \begin{frame}
+\frametitle{Equations like this are not just for mechanics!}
+\begin{center}
+\begin{circuitikz}
+  \draw
+  (0,0) to[sV, l=$v_s$] (0,3)
+        to[R, l=$R$] (3,3)
+        to[L, l=$L$] (6,3)
+        to[C, l=$C$] (6,0) 
+        -- (0,0);
+\end{circuitikz}
+\end{center}
+
+\begin{gather}
+L\Deriv{i(t)}{t} + Ri(t) + \frac{1}{C}\int^t_0 i(\tau) \dee \tau = v_s(t) \\
+L\ddot q + R\dot q + \frac{1}{C} q = v_s \qquad (i(t) = \dot q(t))
+\end{gather}
+
+\end{frame}
+
+\begin{frame}
 \frametitle{Now Å\&M throw you in the deep end\dots}
 General mechanical dynamics:
 \begin{align}
@@ -199,18 +219,18 @@ q \\
 
 \begin{frame}{Continuous time vs discrete time}
 Continuous with $t$:
-\def\tt{{\color{gray}(t)}}
-\def\kk{{\color{gray}[k]}}
+\def\tt{{\color{orange}(t)}}
+\def\kk{{\color{NorthTce}[k]}}
 \begin{align}
 \Deriv{x\tt}{t} &= f(x\tt,u\tt) & y\tt &= h(x\tt,u\tt)
 \end{align}
 Discrete with $k$:
 \begin{align}
-x[k{+}1] &= f[x\kk,u\kk] & y\kk &= h(x\kk,u\kk)
+x{\color{NorthTce}[k{+}1]} &= f[x\kk,u\kk] & y\kk &= h(x\kk,u\kk)
 \end{align}
 Time related by time step $h$:
 \begin{align}
-x[k] &= x(kh) & k &= 1,2,\dots
+x\kk &= x(kh) & k &= 1,2,\dots
 \end{align}
 \end{frame}
 
@@ -236,14 +256,16 @@ You can learn control entirely from the discrete perspective; we want to conside
 \frametitle{Discrete PI Controller}
 \begin{align}
 u(t) &= K_p e(t) + K_i \underbrace{\int_o^t e(\tau) \dee \tau}_{u_i(t)} & \Deriv{u_i(t)}{t} &= e(t) \\
-u[k] &= K_p e[t] + K_i u_i[k]
+u[k] &= K_p e[k] + K_i u_i[k]
 \end{align}
 What is $u_i[k]$ ?
+\begin{uncoverenv}<2>
 \begin{align}
 \Deriv{u_i(t)}{t} &\approx \frac{u_i(kh+h)-u_i(kh)}{h} = e(kh) \\
 u_i(kh+h) &= u_i(kh) + he(kh) \\
 u_i[k+1] &= u_i[k] + he[k]
 \end{align}
+\end{uncoverenv}
 \end{frame}
 
 

@@ -224,11 +224,12 @@ set(l,'interpreter','latex')
 
 %% sysid
 
+clc
 T = 16
 k = 40
 wr = 2*pi/T
-d = 16
+d = 0.16/0.02
 zz=1/sqrt(1+(2*pi/log(d))^2)
-wn=0.4*sqrt(1-2*zz^2)
+wn=0.4*sqrt(1-zz^2)
 m = k/wn^2
 c = 2*zz*sqrt(k*m)
