@@ -4,6 +4,8 @@
 *.asv
 *.aux
 *-blx.bib
+*.blg
+*.bbl
 *.log
 *.nav
 *.toc
