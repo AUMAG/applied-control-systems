@@ -13,8 +13,9 @@
 \end{itemize}
 \vfill References:
 \begin{itemize}
-\item \astrom{Chapter Z}
+\item \astrom{§5.2}
 \end{itemize}
+\printbibliography
 \end{SUMMARY}
 
 
@@ -60,11 +61,73 @@ Consider the ODE:
 
 \SUBCONCEPT{Equilibrium Points and Limit Cycles}
 
-\begin{frame}{This is another slide}
-\begin{itemize}
-\item c
-\item d
-\end{itemize}
+\begin{frame}{Equilibrium point}
+For dynamical system $\Deriv{x}{t} = F(x)$, an equilibrium point $x_e$ is:
+\begin{align}
+\left.\Deriv{x}{t}\right|_{x=x_e} &= F(x_e) = 0
+\end{align}
+Qualitatively:
+\vspace{3cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{Inverted pendulum equilibria}
+This is a second order system with state vector
+\begin{gather}
+x = \Matr{x_1\\x_2} = \Matr{\theta\\\dot\theta}
+\end{gather}
+After normalising away constants:
+\begin{gather}
+\Deriv{x}{t} = \Matr{\dot x_1\\\dot x_2} = \Matr{\dot\theta\\\ddot\theta} = \Matr{\dot\theta\\\sin\theta-c\dot\theta+{\color{red}u\cos\theta}}
+\end{gather}
+When is $\Deriv{x}{t} = \Matr{0\\0}$ ?
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Inverted pendulum equilibria}
+\includegraphics[width=\linewidth]{figure5.4}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Limit cycles}
+\framesubtitle{Example of an electronic oscillator}
+\includegraphics[width=\linewidth]{figure5.5}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Physical system with limit cycle}
+\framesubtitle{\minicite{cheffer2021-amm}}
+
+\includegraphics[width=\linewidth]{cheffer2021-fig1}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Physical system with limit cycle}
+\framesubtitle{\minicite{cheffer2021-amm}}
+
+\includegraphics[width=0.45\linewidth]{cheffer2021-fig4}\hfil\includegraphics[width=0.45\linewidth]{cheffer2021-fig4}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{More complex dynamics example}
+\framesubtitle{\minicite{bizyaev2024-rcd}}
+
+\includegraphics[width=\linewidth]{bizyaev2024-fig1}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{More complex dynamics example}
+\framesubtitle{\minicite{bizyaev2024-rcd}}
+
+\includegraphics[width=\linewidth]{bizyaev2024-fig10}
+
 \end{frame}
 
 
