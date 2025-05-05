@@ -45,10 +45,10 @@ Which offers the better performance?
 Suppose we instead wish to control the angular velocity of the inertia disk to introduce `speed control'. 
 
 \begin{enumerate}
-	\item First we need to measure the velocity of the inertia disk, which can be facilitated through adding in a low-pass filter and a Derivative block, additionally connect this to a Scope
+	\item First we need to measure the velocity of the inertia disk, which can be facilitated through adding in a low-pass filter and a Derivative block, additionally connect this to a Scope. Choose a cutoff frequency of $f_c=10$ rad/s for the low-pass filter.
 	\item You will see after running the Simulink file that In this case the ITD model is not a great fit, we instead need to use the First Order Time Delay (FOTD) model which is on the following slide
 	\item Calculate the FOTD parameters $a$, $T$, and $L$, and using the FOTD Chien-Hrones-Reswick tuning law calculate the corresponding PID gains
-	\item Run the plant and controller with these gains and assess the performance to a step input of $1$
+	\item Run the plant and controller with these gains and assess the performance to a step input of $2$
 	\item Repeat with the Cohen-Coon tuning law and compare
 	
 \end{enumerate}

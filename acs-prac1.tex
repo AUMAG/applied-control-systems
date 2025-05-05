@@ -49,7 +49,6 @@ Once the physical plant is assembled,
 
 Saving your weekly progress will be essential in this course in order to draw upon in later weeks. Note that no spaces or special characters are permitted in Matlab file or path names.
 
-\textcolor{red}{Update simulink file}
 \end{frame}
 
 
@@ -70,22 +69,6 @@ The block in the Simulink model contains the code needed to interface with the Q
 \end{frame}
 
 
-\begin{frame}{Calibration}
-	The output angle is measured using an encoder which divides the range of motion into discrete ``ticks” which approximate the current position. In this case, the range of positions (1 revolution) is divided into 2048 ticks. Therefore, the encoder output (in ticks) may be converted to radians by multiplying by $\tfrac{2\pi}{2048}$ using a Gain block. In general it is critical to understand the format of the output from the device for control purposes i.e. units, scale, resolution, sensitivity etc. 
-	
-	\textcolor{red}{Figure of calibrated output angle}
-\end{frame}
-
-\begin{frame}{Discretisation}
-The following figure demonstrates the discretisation of the encoder.
-\begin{figure}
-\centering
-\includegraphics[width=8cm]{prac1_discretised_signal.png}
-\caption{Discretised signal from encoder.}
-\end{figure}
-
-\end{frame}
-
 
 
 \begin{frame}{Operating the QUBE}
@@ -105,6 +88,21 @@ The following figure demonstrates the discretisation of the encoder.
 	\includegraphics[width=8cm]{prac1_simulink.png}
 	\caption{Simulink toolbar.}
 \end{figure}
+\end{frame}
+
+
+\begin{frame}{Calibration}
+	The output angle is measured using an encoder which divides the range of motion into discrete ``ticks” which approximate the current position. In this case, the range of positions (1 revolution) is divided into 2048 ticks. Therefore, the encoder output (in ticks) may be converted to radians by multiplying by $\tfrac{2\pi}{2048}$ (this is done within the Simulink QUBE subsystem). In general it is critical to understand the format of the output from the device for control purposes i.e. units, scale, resolution, sensitivity etc. 
+\end{frame}
+
+\begin{frame}{Discretisation}
+	The following figure demonstrates the discretisation of the encoder.
+	\begin{figure}
+		\centering
+		\includegraphics[width=8cm]{prac1_discretised_signal.png}
+		\caption{Discretised signal from encoder.}
+	\end{figure}
+	
 \end{frame}
 
 
@@ -134,7 +132,7 @@ The discrete steps from the encoder can be effectively smoothed out by the low p
 \end{frame}
 
 \begin{frame}{Low-pass filter}
-\textcolor{red}{Change figure to one you would get from open loop intertia disk}
+\textcolor{red}{Change figure to one you would get from open loop inertia disk}
 The following figure shows that the filter does smooth the curve, but also introduces a time lag (i.e. shifts to the right).
 \begin{figure}
 	\centering
