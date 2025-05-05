@@ -3,6 +3,7 @@ SHELL = bash
 
 BUILD = _build
 UPLOAD = _upload
+EXTRA = _extra
 
 texsty   = $(wildcard *.cls) $(wildcard *.sty) $(wildcard *.bib) applied-control-systems.tex $(wildcard *.lua)
 
@@ -10,6 +11,7 @@ notesrc  = applied-control-systems.tex
 topcsrc  = $(wildcard acs-0-*.tex) $(wildcard acs-1-*.tex) $(wildcard acs-2-*.tex) $(wildcard acs-3-*.tex)
 pracsrc  = $(wildcard acs-prac*.tex)
 worksrc  = $(wildcard acs-workshop*.tex)
+extrafiles = $(notdir $(wildcard extra/*.*))
 
 notepdf = $(notesrc:.tex=.pdf)
 topcpdf = $(topcsrc:.tex=.pdf)
@@ -25,6 +27,7 @@ uploadnotepdf = $(addprefix $(UPLOAD)/,$(notepdf))
 uploadtopcpdf = $(addprefix $(UPLOAD)/,$(topcpdf))
 uploadworkpdf = $(addprefix $(UPLOAD)/,$(workpdf))
 uploadpracpdf = $(addprefix $(UPLOAD)/,$(pracpdf))
+uploadextra   = $(addprefix $(EXTRA)/,$(extrafiles))
 
 .PHONY: help edit topics pracs workshops notes all upload uploadnotes clean figures
 
@@ -37,9 +40,13 @@ help:
 	@echo '       notes - Combined lecture notes'
 	@echo '         all - All of the above'
 	@echo '   upload[*] - Make [*] as above (e.g. "uploadpracs" reqs "pracs") and upload the results'
+	@echo '       extra - Upload all files in extra/ to Canvas'
 	@echo '       clean - Remove cruft in working directly and all _build/ files'
 	@echo '        edit - Edit this Makefile'
 
+test:
+	echo $(extrafiles)
+	
 edit:
 	edit Makefile || bbedit Makefile
 
@@ -48,6 +55,7 @@ pracs: $(buildpracpdf)
 workshops: $(buildworkpdf)
 notes: $(buildnotepdf)
 all: topics pracs workshops notes
+extra: $(uploadextra)
 
 uploadtopics: $(uploadtopcpdf)
 uploadpracs: $(uploadpracpdf)
@@ -63,7 +71,12 @@ clean:
 
 $(UPLOAD)/%.pdf: $(BUILD)/%.pdf
 	mkdir -p $(UPLOAD)
-	@echo "\n\nUPLOAD\n\n"
+	@echo '\n\nUPLOAD\n\n'
+	lua canvas-acs-upload-file.lua $<  &&  cp -f $< $@
+
+$(EXTRA)/%: extra/%
+	mkdir -p $(EXTRA)
+	@echo '\n\nEXTRA\n\n'
 	lua canvas-acs-upload-file.lua $<  &&  cp -f $< $@
 
 $(BUILD)/%.pdf: %.tex

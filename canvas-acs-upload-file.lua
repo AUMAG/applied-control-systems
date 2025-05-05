@@ -15,13 +15,6 @@ end
 
 print("Uploading file:", file_to_upload)
 
--- Validate file extension
-if path.extension(file_to_upload):lower() ~= ".pdf" then
-    print("Error: Only PDF files are allowed.")
-    os.exit(1)
-end
-
-
 local folder = "./"  
 local files = dir.getfiles(folder)
 
@@ -31,8 +24,10 @@ end
 
 do
     file = file_to_upload
+    print(file)
     local prac = file:match(".*prac.*")
     local work = file:match(".*workshop.*")
+    local extra = file:match(".*extra/.*")
     
     if prac then
         print("Uploading practical PDF:", file)
@@ -40,6 +35,9 @@ do
     elseif work then
         print("Uploading workshop PDF:", file)
         xx = canvas:file_upload({filename = file, folder = "Workshops"})
+    elseif extra then
+        print("Uploading workshop PDF:", file)
+        xx = canvas:file_upload({filename = file, folder = "Extra"})
     else
         print("Uploading slides PDF:", file)
         xx = canvas:file_upload({filename = file, folder = "Slides"})
