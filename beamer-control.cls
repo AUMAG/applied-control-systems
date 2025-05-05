@@ -324,6 +324,15 @@
 %}
 
 % A combination of \partpage and \(sub)sectionpage: (WR)
+\setbeamerfont{part name}{size=\normalsize}
+\setbeamerfont{section name}{size=\normalsize}
+\setbeamerfont{subsection name}{size=\normalsize}
+\setbeamerfont{part title}{size=\large}
+\setbeamerfont{section title}{size=\large}
+\setbeamerfont{subsection title}{size=\Large}
+\setbeamercolor{part title}{fg=NorthTce!50}
+\setbeamercolor{section title}{fg=NorthTce!75}
+
 \setbeamertemplate{subsection page}{
   \centering
   \includegraphics{au-logo}\par\bigskip
@@ -333,8 +342,8 @@
   \begingroup
     \centering
     {\usebeamerfont{part name}\usebeamercolor[fg]{part name}\partname~\insertromanpartnumber}%
-    \vskip0.2ex\par
-    \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \par
+    \begin{beamercolorbox}[sep=6pt, center]{part title}
       \usebeamerfont{part title}\currMODULE\par
     \end{beamercolorbox}
   \endgroup
@@ -346,8 +355,8 @@
   \begingroup
     \centering
     {\usebeamerfont{section name}\usebeamercolor[fg]{section name}\sectionname~\insertsectionnumber}%
-    \vskip0.2ex\par
-    \begin{beamercolorbox}[sep=12pt,center]{section title}
+    \par
+    \begin{beamercolorbox}[sep=6pt, center]{section title}
       \usebeamerfont{section title}\currTOPIC\par
     \end{beamercolorbox}
   \endgroup
@@ -359,8 +368,8 @@
   \begingroup
     \centering
     {\usebeamerfont{subsection name}\usebeamercolor[fg]{subsection name}\subsectionname~\insertsubsectionnumber}
-    \vskip0.2ex\par
-    \begin{beamercolorbox}[sep=8pt,center]{subsection title}
+    \par
+    \begin{beamercolorbox}[sep=6pt, center]{subsection title}
       \usebeamerfont{subsection title}\currCONCEPT\par
     \end{beamercolorbox}
   \endgroup
