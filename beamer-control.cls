@@ -143,7 +143,7 @@
 \usepackage[american]{circuitikz}
 
 \usetikzlibrary{positioning}
-\usetikzlibrary{shapes,arrows,calc}
+\usetikzlibrary{shapes,arrows,arrows.meta,calc}
 \usetikzlibrary{patterns,decorations.pathmorphing}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
