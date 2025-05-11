@@ -90,7 +90,7 @@ Using these values
 \end{frame}
 
 \begin{frame}{Simulating the model}
-\includematlab{prac2.m}{part1}
+\includematlab{prac1.m}{part1}
 \end{frame}
 
 
@@ -104,12 +104,16 @@ Similarly, we can use Simulink to simulate the state space model.
 
 What do you notice?
 
-
-\textcolor{red}{Simulink diagram of SS model and plant with same input and going into same scope}
-
 \end{frame}
 
 
+\begin{frame}{Simulating the model}
+	 \begin{figure}
+		\centering
+		\includegraphics[width=10cm]{prac2_ss_simulink.png}
+		\caption{Simulink model with physical plant and state space model.}
+	\end{figure}
+\end{frame}
 
 
 \SUBCONCEPT{Characterising the output response}
@@ -118,25 +122,24 @@ What do you notice?
 An alternative method to deriving a first principles model is to identify the system by fitting a curve to the output response. 
 
 \begin{itemize}
-	\item The open loop (no feedback) response of the inertia disk may be modelled as an Integrator with Time Delay (ITD) model which requires two parameters, $a$ and $L$
-	\item The intercept $a$ and the time lag $L$ may be calculated according to the definition in the notes (also shown in the following figure)
+	\item The open loop (no feedback) response of the inertia disk may be modelled as an Integrator with Time Delay (ITD) model which requires two parameters, $a$ and $\tau$
+	\item The intercept $a$ and the time lag $\tau$ may be calculated according to the definition in the notes (also shown in the following figure)
 \end{itemize}
 
 
 \end{frame}
 
 \begin{frame}{Parameter calculation}
-	UPDATE THESE WITH WILLS NEW PLOTS
 	\begin{figure}
 		\centering
-		\includegraphics[width=8cm]{prac2_itd.png}
+		\includegraphics[width=8cm]{itd-at}
 		\caption{Integrator with Time Delay (ITD) model.}
 	\end{figure}
 \end{frame}
 
 
 \begin{frame}{Characterising the response}
-	Approximate the ITD parameters $a$ and $L$ of the open-loop inertia disk.
+	Approximate the ITD parameters $a$ and $\tau$ of the open-loop inertia disk.
 	\begin{enumerate}
 		\item Run the Simulink model for 10 seconds to receive the output response to a step input
 		\item Open the Scope and click Tools > Measurements > Cursor Measurements to assist in identifying individual points

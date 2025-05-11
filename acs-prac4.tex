@@ -25,7 +25,7 @@ This practical will consist of the following parts:
 In previous weeks we have characterised the angular output of the QUBE inertia disk as an Integrator with Time Delay (ITD) model. From this output characterisation we can use offline tuning laws to set $K_p$, $K_i$, and $K_d$ which can be found at the end of this document.
 
 \begin{enumerate}
-\item Find the ITD parameters $a$ and $L$ of the inertia disk model 
+\item Find the ITD parameters $a$ and $\tau$ of the inertia disk model 
 \item Using the Ziegler-Nichols tuning law, calculate the corresponding PID gains
 \item Run the plant and controller with these gains and assess the performance to a step input of $\tfrac{\pi}{2}$
 \item Repeat with the ITD Chien-Hrones-Reswick tuning law and compare
@@ -37,6 +37,14 @@ Which offers the better performance?
 \end{frame}
 
 
+\begin{frame}{Tuning a displacement controller}
+	\begin{figure}
+		\centering
+		\includegraphics[width=8cm]{itd-at}
+		\caption{Integrator with Time Delay (ITD) model.}
+	\end{figure}
+\end{frame}
+
 
 
 \SUBCONCEPT{Controlling angular velocity}
@@ -45,24 +53,31 @@ Which offers the better performance?
 Suppose we instead wish to control the angular velocity of the inertia disk to introduce `speed control'. 
 
 \begin{enumerate}
-	\item First we need to measure the velocity of the inertia disk, which can be facilitated through adding in a low-pass filter and a Derivative block, additionally connect this to a Scope. Choose a cutoff frequency of $f_c=10$ rad/s for the low-pass filter.
-	\item You will see after running the Simulink file that In this case the ITD model is not a great fit, we instead need to use the First Order Time Delay (FOTD) model which is on the following slide
-	\item Calculate the FOTD parameters $a$, $T$, and $L$, and using the FOTD Chien-Hrones-Reswick tuning law calculate the corresponding PID gains
-	\item Run the plant and controller with these gains and assess the performance to a step input of $2$
+	\item First we need to measure the velocity of the inertia disk, which can be facilitated through adding in a low-pass filter and a Derivative block, additionally connect this to a Scope, choose a low cutoff frequency of $f_c=10$ rad/s for the low-pass filter
+	\item You will see after running the Simulink file that in this case the ITD model is not a great fit, we instead need to use the First Order Time Delay (FOTD) model which is on the following slide
+	\item Calculate the FOTD parameters $a$, $T_{63}$, and $\tau$, and using the FOTD Chien-Hrones-Reswick tuning law calculate the corresponding PID gains (note we do not need a low-pass filter for the derivative gain as our signal is already filtered)
+	\item Run the plant and controller with these gains and assess the performance to a step input of $10$ (this is setting a desired angular velocity of $10$ rad/s)
 	\item Repeat with the Cohen-Coon tuning law and compare
-	
 \end{enumerate}
 
-\textcolor{red}{Simulink diagram}
+You may wish to assess the performance of your controller by gently touching the inertia disk with your finger. 
 
 \end{frame}
 
 \begin{frame}{Tuning a speed controller}
 	\begin{figure}
 	\centering
-	\includegraphics[width=8cm]{prac4_fotd.png}
-	\caption{First Order Time Delay (ITD) model.}
+	\includegraphics[width=8cm]{fotd-LT}
+	\caption{First Order Time Delay (FOTD) model.}
 \end{figure}
+\end{frame}
+
+\begin{frame}{Tuning a speed controller}
+	\begin{figure}
+		\centering
+		\includegraphics[width=11cm]{prac4_speed_control}
+		\caption{Simulink model for speed control.}
+	\end{figure}
 \end{frame}
 
 
@@ -82,7 +97,7 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 					\hline
 					$K_p$ & $T_i$ & $T_d$\\
 					\hline
-					$\frac{1.2}{a}$ & $2L$ & $\frac{L}{2}$\\
+					$\frac{1.2}{a}$ & $2\tau$ & $\frac{\tau}{2}$\\
 					\hline	
 				\end{tabular}
 				\caption{Ziegler-Nichols tuning law}
@@ -94,7 +109,7 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 					\hline
 					$K_p$ & $T_i$ & $T_d$\\
 					\hline
-					$\frac{0.95}{a}$ & $2.4 L$ & $0.42 L$\\
+					$\frac{0.95}{a}$ & $2.4 \tau$ & $0.42 \tau$\\
 					\hline	
 				\end{tabular}
 				\caption{ITD Chien-Hrones-Reswick tuning law (0\% overshoot)}
@@ -109,7 +124,7 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 					\hline
 					$K_p$ & $T_i$ & $T_d$\\
 					\hline
-					$\frac{0.6}{a}$ & $T$ & $\frac{L}{2}$\\
+					$\frac{0.6}{a}$ & $T_{63}$ & $\frac{\tau}{2}$\\
 					\hline	
 				\end{tabular}
 				\caption{FOTD Chien-Hrones-Reswick tuning law (0\% overshoot)}
@@ -121,10 +136,10 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 					\hline
 					$K_p$ & $T_i$ & $T_d$\\
 					\hline
-					\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 \tau}{1-\tau} \right)$} & \tiny{$ L\left( \frac{2.5-2\tau}{1-0.39\tau} \right) $} & \tiny{$L \left( \frac{0.37-0.37\tau}{1-0.81\tau} \right)$}\\
+					\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 T}{1-T} \right)$} & \tiny{$ \tau\left( \frac{2.5-2T}{1-0.39T} \right) $} & \tiny{$\tau \left( \frac{0.37-0.37T}{1-0.81T} \right)$}\\
 					\hline	
 				\end{tabular}
-				\caption{Cohen-Coon tuning law where $\tau=\frac{L}{L+T}$}
+				\caption{Cohen-Coon tuning law where $T=\frac{\tau}{\tau+T_{63}}$}
 			\end{table}
 		\end{column}
 	\end{columns}

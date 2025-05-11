@@ -24,16 +24,20 @@ This practical will consist of the following parts:
 
 \begin{frame}{Hardware}
 Get into a small group, and acquire 
+\vspace{-0.2cm}
 \begin{itemize}
 	\item a QUBE unit,
 	\item a green printed circuit board (PCB),
 	\item a power cable,
 	\item and a red inertia disk.
 \end{itemize}  
-
+\vspace{-0.2cm}
 These components only assemble one way. In particular, ensure the ribbon cable is inserted correctly into the PCB (align the notch on the ribbon cable connector with the corresponding gap in the plastic PCB connector).
-
-\textcolor{red}{Insert image of components}
+\vspace{-0.2cm}
+\begin{figure}
+	\centering
+	\includegraphics[width=6cm]{prac1_hardware.png}
+\end{figure}
 
 
 \end{frame}
@@ -63,7 +67,11 @@ The block in the Simulink model contains the code needed to interface with the Q
 	\item \textbf{Output} - angle from the initial position, in radians
 \end{itemize}
 
-\textcolor{red}{Figure of QUBE in Simulink}
+\begin{figure}
+	\centering
+	\includegraphics[width=8cm]{prac1_qube_simulink.png}
+	\caption{Simulink QUBE model.}
+\end{figure}
 
 
 \end{frame}
@@ -127,17 +135,20 @@ The discrete steps from the encoder can be effectively smoothed out by the low p
 	\item Connect a scope before and after the filter to visualise the effects of filtering
 	\item Run the QUBE and compare the pre-filtered and filtered signals to get an intuitive feel for an appropriate cut off frequency
 \end{enumerate}
-
- A good guess might be 50 rad/s to start, but experiment with different cutoff frequencies to get an idea of what range we need. The key is to get a smooth signal without introducing too much time lag. 
+ 
+ \begin{figure}
+ 	\centering
+ 	\includegraphics[width=7cm]{prac1_lowpass.png}
+ 	\caption{Simulink model with output signal filter.}
+ \end{figure}
 \end{frame}
 
 \begin{frame}{Low-pass filter}
-\textcolor{red}{Change figure to one you would get from open loop inertia disk}
-The following figure shows that the filter does smooth the curve, but also introduces a time lag (i.e. shifts to the right).
+ A good guess might be 50 rad/s to start, but experiment with different cutoff frequencies to get an idea of what range we need. The key is to get a smooth signal without introducing too much time lag. The following figure shows that the filter does smooth the curve, but also introduces a time lag (i.e. shifts to the right).
 \begin{figure}
 	\centering
-	\includegraphics[width=8cm]{prac1_filter.png}
-	\caption{Output signal before and after filter.}
+	\includegraphics[width=7cm]{prac1_filtered.png}
+	\caption{Output signal in Simulink before and after filter.}
 \end{figure}
 \end{frame}
 

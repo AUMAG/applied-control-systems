@@ -25,7 +25,11 @@ This practical will consist of the following parts:
 In this practical we will use the compound pendulum system.
 Grab the yellow compound pendulum and position the QUBE on its side, such that the pendulum is appropriately affected by gravity.\\
 
-\textcolor{red}{Image of compound pendulm and QUBE}
+\begin{figure}
+	\centering
+	\includegraphics[width=6cm]{prac5_pendulum.png}
+	\caption{QUBE with compound pendulum attachment.}
+\end{figure}
 
 \end{frame}
 
@@ -75,15 +79,25 @@ where
 
 \begin{frame}{Pole placement}
 
-\textcolor{red}{Test this out with compound pendulum.}
+Given the transfer function model of the compound pendulum, one method of control is to design proportional feedback such that the resulting poles of the closed loop system provide a desired response
 
-Given the transfer function model of the compound pendulum, one method of controlis to design proportional feedback such that the resulting poles of the closed loop system provide a desired response
+Pairs of complex poles $s=\omega_n (-\zeta_n \pm j \sqrt{1-\zeta_n^2})$
 
+
+Figure of complex poles?
+
+FINISH
+
+\end{frame}
+
+
+
+\begin{frame}{Pole placement}
 You may use the following relation
 \[ T_{2\%} = \frac{4}{\zeta_n \omega_n}. \]
 
 \begin{enumerate}
-	\item Calculate the position of the desired poles given that we require a 2\% settling time of XXXX with a damping ratio of XXXX. 
+	\item Calculate the position of the desired poles given that we require a 2\% settling time of 250ms with a damping ratio of $\zeta_n=\tfrac{1}{\sqrt{2}}$
 	\item Use the Matlab command K=place(A,B,p) to determine the required gains 
 	\item Implement this controller in Simulink and assess if you have met the requirements
 \end{enumerate}

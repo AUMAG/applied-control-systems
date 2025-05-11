@@ -46,7 +46,7 @@ Note the proportional gain uses difference between output and the step signal to
 \begin{frame}{Using proportional feedback}
 	\begin{figure}
 		\centering
-		\includegraphics[width=9cm]{prac1_prop_control.png}
+		\includegraphics[width=9cm]{prac3_kp.png}
 		\caption{Applying proportional control to the system.}
 	\end{figure}
 	You’ll need to select an appropriate $K_p.$ Try some large and some smaller values until you get a feel for what each of these does. You are effectively incorporating a virtual spring where $K_p$ is your stiffness. Changing the stiffness in many mechanical devices changes the way systems behave and often dictate important resonances. Hence, adding a virtual spring can be used to accomplish the same result.
@@ -56,21 +56,27 @@ Note the proportional gain uses difference between output and the step signal to
 
 
 \begin{frame}{Using derivative feedback}
-\textcolor{red}{Simulink diagram with PD control}\\
 After finding a good $K_p$ we are ready to additionally implement derivative control with gain $K_d$ by feeding back the derivative of the state error (the error angular velocity in this case).
 
 \begin{enumerate}
 	\item Add a Gain block along with a Derivative block to feed back the derivative of the error signal
-	\item As we are working with discretised values of angle from the angular encoder, we must first filter our signal using a low-pass filter as we saw in Week 1
+	\item As we are working with discretised values of angle from the angular encoder, we must first filter our signal using a low-pass filter as we saw in Week 1, choose an appropriate cutoff frequency $f_c$
 	\item Find an appropriate value for $K_d$ through experimentation
 \end{enumerate}
 
 \textbf{Derivative control uses the \textit{future} error of the state, and acts like a damper opposing the velocity of the state.}
 \end{frame}
 
+\begin{frame}{Using derivative feedback}
+		\begin{figure}
+		\centering
+		\includegraphics[width=11cm]{prac3_pd.png}
+		\caption{Applying derivative control to the system.}
+	\end{figure}
+\end{frame}
+
 
 \begin{frame}{Using integral feedback}
-\textcolor{red}{Simulink diagram with PID control}\\
 After appropriate selction of $K_d$, integral control with gain $K_i$ can be introduced by feeding back the integral of the state error. 
 
 \begin{enumerate}
@@ -82,7 +88,13 @@ After appropriate selction of $K_d$, integral control with gain $K_i$ can be int
 \textbf{Integral control uses the \textit{past} error of the state.}
 \end{frame}
 
-
+\begin{frame}{Using integral feedback}
+			\begin{figure}
+		\centering
+		\includegraphics[width=11cm]{prac3_pid.png}
+		\caption{Applying integral control to the system.}
+	\end{figure}
+\end{frame}
 
 \SUBCONCEPT{Manual tuning}
 
@@ -92,7 +104,7 @@ Now that we have fully implemented PID control it is best practice to optimise t
 \begin{enumerate}
 	\item Adapt the PID gains to optimise performance of the controller (you may start with large variations say doubling or halving values, and then focus in with smaller variations)
 	\item To assess how altering the gains affects the performance of the controller, make sure to only change one of the three gains between tests
-	\item Try to achieve a step response that has minimal oscillation, has an overshoot less than 10\%, and a settling time less than 0.5 seconds
+	\item Try to achieve a step response that has minimal oscillation, has an overshoot less than 5\%, and a settling time less than 0.5 seconds
 \end{enumerate}
 You may wish to plot the input on the same scope as the output to better assess your controller's performance.
 
