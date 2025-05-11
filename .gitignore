@@ -12,6 +12,7 @@
 *.run.xml
 *.synctex*
 *.snm
+*.vrb
 
 # only top-level PDFs
 /*.pdf 
