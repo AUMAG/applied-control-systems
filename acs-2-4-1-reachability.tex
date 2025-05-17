@@ -61,11 +61,13 @@ where $x$ is n-dimensional
 \SUBCONCEPT{Tests for reachability}
 
 \begin{frame}{Reachability matrix}
-	Define the reachability matrix
-	\[W_r = \begin{bmatrix}
-		B & AB & A^2 B & \cdots & A^{n-1}
-	\end{bmatrix}\]
-A linear system is reachable if and only if the reachability matrix $W_r$ is invertible (or equivalently, full rank)
+	\begin{itemize}
+		\item Define the reachability matrix
+		\[W_r = \begin{bmatrix}
+			B & AB & A^2 B & \cdots & A^{n-1}
+		\end{bmatrix}\]
+		\item A linear system is reachable if and only if the reachability matrix $W_r$ is invertible (or equivalently, full rank)
+	\end{itemize}
 
 \end{frame}
 
@@ -105,7 +107,7 @@ The determinant of this matrix is $\operatorname{det}(W_r)=-\frac{g^2l^4m^4}{\mu
 
 \SUBCONCEPT{Reachable canonical form}
 
-\begin{frame}{Reachable canonical form}
+\begin{frame}{Coordinate transformation}
 \begin{itemize}
 	\item Changing the coordinates and writing dynamics in this transformed coordinate system $z=Tx$ often makes calculation more convient
 	\item Reachable canonical form is given by 
@@ -124,7 +126,7 @@ The determinant of this matrix is $\operatorname{det}(W_r)=-\frac{g^2l^4m^4}{\mu
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Reachability canonical form}
+\begin{frame}{Coordinate transformation}
 \begin{itemize}
 	\item The characteristic polynomial for a system in reachable canonical form is 
 	\[\operatorname{det}(sI-A)= s^n+a_1s^{n-1}+\cdots + a_{n-1}s+a_n\]

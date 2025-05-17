@@ -6,31 +6,145 @@
 
 \begin{SUMMARY}
 \begin{itemize}
-\item Yyy
+\item Observability 
+\item State estimation
+\item Control using estimated states
 \end{itemize}
 \vfill References:
 \begin{itemize}
-\item \astrom{Chapter Z}
+\item \astrom{§8.1–§8.3}
 \end{itemize}
 \end{SUMMARY}
 
 
-\SUBCONCEPT{This is a Subconcept}
+\SUBCONCEPT{Observability}
 
-\begin{frame}{This is a slide}
+\begin{frame}{Observability definition}
 \begin{itemize}
-\item a
-\item b
+\item In many settings, all states of a system cannot be measured and instead must be estimated using a model of the system
+\item This can be done with a system known as an observer
+\item For a system described by 
+\[\frac{\mathrm{d}x}{\mathrm{d}t} = Ax+Bu, \quad y=Cx+Du\]
+the system is observable if for every $T>0$, it is possible to determine the state of the system $x(T)$ through measurements of $y(t)$ and $u(t)$ for $0\leq t \leq T$
+\item An observable system is therefore one whose dynamics can be understood just from measurement of the inputs and outputs
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Observability matrix}
+	\begin{itemize}
+		\item In a similar way to the reachability condition, for linear systems the \textit{observability} matrix tells us when it is possible to infer the state from observations of the output
+		\item The observability matrix is defined as 
+		\[W_o = \begin{bmatrix}
+			C \\ CA \\ CA^2 \\ \vdots \\ CA^{n-1}
+		\end{bmatrix}\]
+		\item A linear system is observable if and only if the observability matrix $W_o$ is full row rank (it has $n$ independent rows)
+	\end{itemize}
+\end{frame}
 
-\SUBCONCEPT{This is another Subconcept}
+\begin{frame}{Observability canonical form}
+	\begin{itemize}
+		\item We also may consider observability canonical form which is useful in studying observability
+		\item Observable canonical form is given by 
+		\small{\[\frac{\mathrm{d}z}{\mathrm{d}t} = \begin{bmatrix}
+			-a_1 & 1 & & \\
+			 -a_2 & 0 & \ddots & \\ \vdots & & \ddots & 1\\
+			  -a_n & & & 0
+		\end{bmatrix}z + \begin{bmatrix}
+			b_1 \\ b_2 \\ \vdots \\ b_n
+		\end{bmatrix} u \]
+		\[y=\begin{bmatrix}
+			1 & 0  & \cdots & 0
+		\end{bmatrix}z + d_0u\]}
+		\item The observability matrix in observability canonical form is 
+		\small{\[\tilde{W}_o = \begin{bmatrix}
+			1 & & & & \\
+			a_1 & 1& & & \\
+			a_2 & a_1 & 1 & & \\
+			\vdots & \vdots & & \ddots & \\
+			a_{n-1} & a_{n-2} & \cdots & a_1 & 1
+		\end{bmatrix}^{-1}\]}
+	\end{itemize}
+\end{frame}
 
-\begin{frame}{This is another slide}
+\SUBCONCEPT{State estimation}
+
+\begin{frame}{The observer}
 \begin{itemize}
-\item c
-\item d
+\item Observers are linear dynamical systems that take the inputs $u$ and outputs $y$ of a system and produces an estimate $\hat{x}$ of the systems state $x$
+\item The differential equations for an observer are
+\[\frac{\mathrm{d}\hat{x}}{\mathrm{d}t} = A\hat{x}+Bu+L(y-C\hat{x})\]
+\item The estimation error $\tilde{x}=x-\hat{x}$ therefore has dynamics
+\[\frac{d\tilde{x}}{\mathrm{d}t} = (A-LC)\tilde{x}\]
+so the error between our estimate and the true state goes to zero if $(A-LC)$ has eigenvalues with negative real part
+\item The convergence rate is determined by appropriate selection of eigenvalues
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Eigenvalue assignment}
+\begin{itemize}
+	\item The problem of assigning eigenvalues for our observer is similar to the problem of assigning eigenvalues for a state feedback controller 
+	\item Both problems are \textit{dual} with the following equivalences
+	\[A \leftrightarrow A^T, \quad B \leftrightarrow C^T, \quad K \leftrightarrow L^T, \quad W_{\mathrm{r}} \leftrightarrow W_{\mathrm{o}}^T \]
+	\item This means we can use the same algorithms to design  linear observers and linear controllers
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Observer design}
+	\begin{enumerate}
+		\item Given a linear state space model, $A$, $B$, $C$, with $D=0$, calculate the characteristic polynomial
+		\[\operatorname{det}(sI-A) = s^n+a_1s^{n-1}+\cdots + a_{n-1}s+a_n\]
+		\item If the system is observable then 
+		\[\frac{\mathrm{d}\hat{x}}{\mathrm{d}t} = A\hat{x}+Bu+L(y-C\hat{x})\]
+		is an observer for the system with $L$ chosen as 
+		\[L= W_o^{-1} \tilde{W}_o\begin{bmatrix}
+			p_1-a_1\\ p_2-a_2 \\ \vdots \\ p_n-a_n
+		\end{bmatrix}\]
+		
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Observer design}
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item The observer error $\tilde{x}=x-\hat{x}$ is governed by the system with characteristic polynomial 
+		\[p(s) = s^n+p_1 s^{n-1}+ \cdots p_{n-1}s+p_n\]
+	\end{enumerate}
+	This method is implemented in Matlab in the functions \textbf{acker} and \textbf{place} (same as for state feedback controller design!)
+\end{frame}
+
+
+
+
+\SUBCONCEPT{Control using estimated states}
+
+\begin{frame}{Controllers and observers}
+\begin{itemize}
+	\item In settings where we do not have direct measurement of system states but we still wish to control our system, we may instead try feeding back our \textit{estimates} of the state
+	\item Our control is then of the form 
+	\[u=-K\hat{x}+k_f r\]
+	where $\hat{x}$ is the output of the observer
+	\[\frac{\mathrm{d}\hat{x}}{\mathrm{d}t} = A\hat{x}+Bu+L(y-C\hat{x})\]
+	\item The full closed-loop system is then governed by the system dynamics and the observer error dynamics given by $\tilde{x}=x-\hat{x}$ as
+	\[\frac{\mathrm{d}}{\mathrm{d}t} \begin{bmatrix}
+		x \\ \tilde{x}
+	\end{bmatrix} = \begin{bmatrix}
+	A-BK & BK\\
+	0 & A-LC 
+	\end{bmatrix} \begin{bmatrix}
+	x \\ \tilde{x}
+	\end{bmatrix}  + \begin{bmatrix}
+	Bk_f \\ 0
+	\end{bmatrix} \]
+\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Controllers and observers}
+\begin{itemize}
+	\item Because the dynamics are block diagonal, the characteristic polynomial of the closed loop system is given by 
+	\[p(s) = \operatorname{det}(sI-A+BK)\operatorname{det}(sI-A+LC)\]
+	\item Therefore we must design the state feedback and observer simultaneously
+	\item This involves a balance between high controller performance and robustness in the presence of uncertainty
 \end{itemize}
 \end{frame}
 

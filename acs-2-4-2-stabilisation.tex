@@ -20,7 +20,7 @@
 
 \SUBCONCEPT{State feedback structure}
 
-\begin{frame}{State space controller structure}
+\begin{frame}{Controller structure}
 \begin{itemize}
 \item We will assume we have a system with a linear state model that has a single input for control
 \item How do we design the dynamics of a system through feedback of the state
@@ -35,7 +35,7 @@
 \end{frame}
 
 
-\begin{frame}{State space controller structure}
+\begin{frame}{Controller structure}
 	\begin{itemize}
 		\item Consider a system described by
 		\[ \frac{\mathrm{d} x}{\mathrm{d} t}=A x+B u, \quad y=C x+D u\]
@@ -47,7 +47,7 @@
 \end{frame}
 
 
-\begin{frame}{State space controller structure}
+\begin{frame}{Controller structure}
 	\begin{itemize}
 		\item We can therefore determine the characteristic polynomial of the closed loop system from our state space representation
 		\item Comparing this to a \textit{desired} characteristic polynomial,
@@ -124,7 +124,7 @@
 
 
 \SUBCONCEPT{Eigenvalue assignment}
-\begin{frame}{Eigenvalue assignment}
+\begin{frame}{Design with reachable canonical form}
 This process allows us to assign the eigenvalues of the closed loop system to the eigenvalues of a desired system only if the system is reachable
 \begin{enumerate}
 	\item Given a linear state space model, $A$, $B$, $C$, and $D$, calculate the characteristic polynomial
@@ -142,7 +142,7 @@ This process allows us to assign the eigenvalues of the closed loop system to th
 \end{enumerate}
 \end{frame}
 
-\begin{frame}{Eigenvalue assignment}
+\begin{frame}{Design with reachable canonical form}
 \begin{enumerate}
 	\setcounter{enumi}{2}
 	\item The feedback gains to give a closed loop system with unity zero frequency gain between $r$ and $y$ and characteristic polynomial
