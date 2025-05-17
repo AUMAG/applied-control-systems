@@ -6,63 +6,46 @@
 
 \begin{frame}
 \frametitle{Introduction}
-In this practical, we will perform frequency domain analysis of the controlled compound pendulum system using Bode, Nyquist and Nichols plots.
+In this practical, we will perform frequency domain analysis of the compound pendulum system using Bode and Nyquist plots.
 
 \vfill
 
 This practical will consist of the following parts:
 \begin{itemize}
-\item Bode, Nyquist, and Nichols
 \item Theoretical analysis
 \item Experimental analysis
 \end{itemize}
 \end{frame}
 
-\SUBCONCEPT{Bode, Nyquist, and Nichols}
-
-\begin{frame}{Bode}
-Given an input frequency $\omega$ of unity amplitude, the two Bode plots tells us the amplitude and phase of the output response. The amplitude is given in decibels (dB).
-
-\textcolor{red}{Use figures from slide notes}
-\end{frame}
-
-
-\begin{frame}{Nyquist}
-The Nyquist plot provides the same information as the Bode plot but represents it by treating it in polar coordinates, where the distance from the origin represents the output amplitude (absolute value), and the angle made with the horizontal axis is the phase response.
-
-\textcolor{red}{Use figures from slide notes}
-\end{frame}
-
-\begin{frame}{Nichols}
-The Nichols plot displays the phase response versus the output amplitude of a system. The amplitude is given in decibels (dB).
-
-	\textcolor{red}{Use figures from slide notes}
-\end{frame}
-
-
 
 \SUBCONCEPT{Theoeretical analysis}
 
 \begin{frame}{Compound pendulum}
-\textcolor{red}{Why was the low-pass filter added to this prac in PID?}
+The theoretical model for the compound pendulum system is given by the transfer function
+\[\frac{\theta_m(s)}{v_m(s)} = \frac{114.1}{s^2 + 5.248s+235.1}. \]
+Suppose someone implements a poor low-pass filter in the electronics/hardware, say a low pass filter with a cutoff frequency of 10 rad/s. The transfer function with this filter is then
+\[\frac{\theta_m(s)}{v_m(s)} = \frac{114.1}{s^2 + 5.248s+235.1}\frac{10}{s+10}. \]
+In this practical you will need to use the \textbf{modified} QUBE block, which includes this problematic filter.
 \end{frame}
 
 \begin{frame}{Frequency analysis}
-Based on the given model of the compound pendulum, use Matlab to plot the Bode, Nichols, and Nyquist curves.
+Based on this model of the compound pendulum, use Matlab to plot the Bode and Nyquist curves. You will need to enter the transfer function with the low-pass filter as the transfer function myTF.
 
 \includematlab{prac6.m}{part1} 
+
+Inspect the plots to identify regions of interest and consider which range of frequencies should be sampled.
 
 \end{frame}
 
 \SUBCONCEPT{Experimental analysis}
 
 \begin{frame}{Frequency analysis}
-The Bode, Nichols, and Nyquist curves can all be constructed from knowledge of the phase and amplitude of the output signal of a plant driven at a range of input frequencies. 
+The Bode and Nyquist curves can all be constructed from knowledge of the phase and amplitude of the output signal of a plant driven at a range of input frequencies. 
 
 \begin{itemize}
-	\item The code on the following slides will produce points on the three diagrams to compare these experimental results with the previously plotted theoretical plots
+	\item The code on the following slides will produce points on the diagrams to compare these experimental results with the previously plotted theoretical plots
 	\item You will need to provide the name of your Simulink model, a range of frequencies (around 10 different frequencies in rad/s) to run the system at, and the name of your input and output signals as given by the To Workspace blocks in Simulink
-	\item Using knowledge of how the Bode, Nyquist and Nichols plots are constructed, fill in the places in the code surrounded by <> to populate your experimental points on the curves
+	\item Using knowledge of how the Bode and Nyquist plots are constructed (such as in the lecture notes), fill in the places in the code surrounded by <> to populate your experimental points on the curves
 \end{itemize}
  
 \end{frame}
@@ -75,6 +58,14 @@ The Bode, Nichols, and Nyquist curves can all be constructed from knowledge of t
 \includematlab{prac6.m}{part3} 
 \end{frame}
 
+\begin{frame}{Experimental plots}
+You should receive something that looks similar to the below plots.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{prac6_experimental}
+\end{figure}
+\end{frame}
+
 
 \begin{frame}{System characteristics}
 These plots provide us with a wealth of information of our system such as 
@@ -83,11 +74,12 @@ These plots provide us with a wealth of information of our system such as
 	\item Stability 
 	\item Gain and phase margins
 \end{itemize}
+Determine these properites of the system by reading their definitions in the lecture notes
 \end{frame}
 
 
 \begin{frame}{Next week}
-	This week you theoretically and experimentally analysed the frequency response of the compound pendulum system using Bode, Nyquist and Nichols plots. 
+	This week you theoretically and experimentally analysed the frequency response of the compound pendulum system using Bode and Nyquist plots. 
 	
 	This concludes the standard practical topics using the QUBEs and next week we will begin the practical project using the ping pong rig.
 \end{frame}

@@ -56,11 +56,9 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 	\item First we need to measure the velocity of the inertia disk, which can be facilitated through adding in a low-pass filter and a Derivative block, additionally connect this to a Scope, choose a low cutoff frequency of $f_c=10$ rad/s for the low-pass filter
 	\item You will see after running the Simulink file that in this case the ITD model is not a great fit, we instead need to use the First Order Time Delay (FOTD) model which is on the following slide
 	\item Calculate the FOTD parameters $a$, $T_{63}$, and $\tau$, and using the FOTD Chien-Hrones-Reswick tuning law calculate the corresponding PID gains (note we do not need a low-pass filter for the derivative gain as our signal is already filtered)
-	\item Run the plant and controller with these gains and assess the performance to a step input of $10$ (this is setting a desired angular velocity of $10$ rad/s)
+	\item Run the plant and controller with these gains and assess the performance to a step input of $20$ (this is setting a desired angular velocity of $20$ rad/s)
 	\item Repeat with the Cohen-Coon tuning law and compare
 \end{enumerate}
-
-You may wish to assess the performance of your controller by gently touching the inertia disk with your finger. 
 
 \end{frame}
 
@@ -78,6 +76,22 @@ You may wish to assess the performance of your controller by gently touching the
 		\includegraphics[width=11cm]{prac4_speed_control}
 		\caption{Simulink model for speed control.}
 	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Tuning a speed controller}
+\begin{itemize}
+	\item You may assess the performance of your controller by gently touching the inertia disk with your finger - the speed should remain constant
+	\item Also try measuring the angular velocity of the inertia disk by using a digital tachometer (note that the tachometer measures angular velocity in RPM and your Scope will display in rad/s)
+	\item Point the end of the tachometer towards the inertia disk where the reflective tape is placed and press the button on the side to measure the angular velocity while the disk is spinning
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=6.5cm]{prac4_tacho}
+	\caption{Tachometer for measuring angular velocity.}
+\end{figure}
+
 \end{frame}
 
 

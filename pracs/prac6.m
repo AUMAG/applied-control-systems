@@ -1,15 +1,14 @@
 
 %<*part1>
-% Plot Bode, Nyquist and Nichols 
+% Plot Bode and Nyquist 
 myTF = tf(<NUMERATOR>, <DENOMINATOR>)
 BoFig = figure; bode(myTF); grid on;
 NyFig = figure; nyquist(myTF); grid on;
-NiFig = figure; nichols(myTF); grid on;
 %</part1>
 
 
 %<*part2>
-%Code to plot the Bode, Nyquist, and Nichols charts
+%Code to plot the Bode and Nyquist charts
 ModelName = '<INSERT NAME OF SIMULINK MODEL HERE>';
 FreqRange = <INSERT VECTOR OF FREQUENCIES HERE>;
 for i = 1:length(FreqRange)
@@ -52,7 +51,6 @@ grid on;
 figure(BoFig); subplot(2,1,1); hold on; semilogx(<FREQUENCY>,<MAGNITUDE>,'ro');
 figure(BoFig); subplot(2,1,2); hold on; semilogx(<FREQUENCY>,<PHASE>,'ro');
 figure(NyFig); hold on; plot(<REAL PART>,<IMAGINARY PART>,'ro');
-figure(NiFig); hold on; plot(<PHASE>,<MAGNITUDE>,'ro');
 
 %</part3>
 
