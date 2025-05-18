@@ -10,15 +10,114 @@ In this workshop, we will use the examples from the lecture notes to explore pro
 
 \SUBCONCEPT{Matlab}
 
-\begin{frame}[fragile]
-\frametitle{Getting started with Matlab}
+\begin{frame}
+\frametitle{A nonlinear ODE}
 
+Satisfy yourself that you can create a nonlinear mass spring damper model:
 
+\includematlab{concept2_2.m}{msdnl}
+
+Double-check you can see what the nonlinearity is here. (This is not necessarily physical, it's just supposed to be a bit out of the ordinary compared to a linear mass-spring-damper.)
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Plotting state variables vs time}
+We simulate and plot as usual:
 
+\includematlab{concept2_2.m}{plot1}
 
+Now add another dynamics function which is linear with same code as before but with sum of forces line replaced by:
+
+\includematlab{concept2_2.m}{msdlin}
+
+Compare the time responses of the two and check they look qualitatively different. (The factor of 100 difference is just because the nonlinearity makes the coefficient have a different scale of effect.)
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vector field}
+
+\begin{itemize}
+\item
+To plot the vector field, evaluate $\dot x$ at a grid of points $(x_{1,i},y_{2,j})$.
+
+\item
+We have the calculation via \texttt{mass\_spring\_damper\_nonlin}, and the way we have written it is automatically `vectorised' --- this means we can pass it a vector of inputs and it will evaluate the function on each element of the vector then return them all in an output vector.
+
+\item
+Matlab provides a suite of tools to help vectorise code. Here we define the range of $x_1$ and $x_2$ we want via \texttt{linspace}. The \texttt{meshgrid} command then gives us an array of every combination of $x_1$ and $x_2$.
+
+\item
+Finally, the \texttt{transpose} line puts $x_1$ and $x_2$ into a horizontal stacked series of column vectors, like:
+\[
+   \Matr{\Matr{x_{1,1}\\x_{2,1}}\Matr{x_{1,2}\\x_{2,2}}\Matr{x_{1,3}\\x_{2,3}}}
+\]
+\end{itemize}
+
+\includematlab{concept2_2.m}{quiv1}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Vector field plotting}
+
+\begin{itemize}
+\item
+Calculating the vector field is the first step, now we plot
+\item
+Matlab provides \texttt{quiver} to do this, it takes the following arguments:
+\begin{itemize}
+\item Array of $x_1$ points
+\item Array of $x_2$ points
+\item Array of $\dot x_1$ values
+\item Array of $\dot x_2$ values
+\end{itemize}
+\item As long as the array sizes are consistent, Matlab will plot the vectors at each point
+\item Once you've done that for the nonlinear system, compare with the linear one --- what do you see?
+\end{itemize}
+
+\includematlab{concept2_2.m}{quiv2}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Phase portraits}
+\begin{itemize}
+\item
+Phase portraits are arguably conceptually easier, but need a for loop so look a bit more complicated
+\item
+All you need to do is pick a bunch of initial conditions, simulate each scenario, and instead of plotting the response vs time, plot $x_2$ vs $x_1$
+\item
+This code plots both $x$ vs $t$ side-by-side with $x_2$ vs $x_1$  so you can explicitly compare them
+\item
+Labels and axis scaling omitted for brevity
+\item
+Once again compare to the linear system and see what you think
+\end{itemize}
+
+\includematlab{concept2_2.m}{phase}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Cruise control example}
+\begin{itemize}
+\item Download the provided code for the cruise control example in Concept~2.4
+\item Work through the file block by block --- you can run each sequentially using CTRL+ENTER (Windows) or CMD+RETURN (Mac)
+\item Confirm that the relationship between the mathematics and the code is clear in your head
+\begin{itemize}
+\item We don't expect you to be able to sit down and write this from scratch, yet, but perhaps later, yes?
+\end{itemize}
+\item Now examine the PI controller
+\begin{itemize}
+\item
+Later in this course, quite some focus will be on ``what happens when you change control gains?''
+\item
+What happens as the $k_p$ gain is made higher or lower? Note how the performance changes
+\end{itemize}
+\end{itemize}
+\end{frame}
 
 
 \end{document}

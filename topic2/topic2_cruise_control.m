@@ -14,6 +14,13 @@ clc
 close all
 clearvars
 
+function saveplot(varargin)
+  plot_bool = false;
+  if plot_bool
+    saveas(varargin{:})
+  end
+end
+
 %% figsize.m
 
 function figsize( w, h, u )
@@ -111,7 +118,7 @@ ylabel("Force $F$, kN",Interpreter="LaTeX")
 ylim([0, 8])
 legend("$n=1$","$n=2$","$n=3$","$n=4$","$n=5$",interpreter="LaTeX")
 
-saveas(gcf,"pdf/car-fv.pdf")
+saveplot(gcf,"pdf/car-fv.pdf")
 
 %% Dynamics
 %
@@ -187,7 +194,7 @@ end
 xlabel("Time $t$, s",Interpreter="LaTeX")
 ylabel("Velocity $v$, m/s",Interpreter="LaTeX")
 title("Varying initial velocity")
-saveas(gcf,"pdf/cruise-v0.pdf")
+saveplot(gcf,"pdf/cruise-v0.pdf")
 
 figure(12); clf; hold on
 figsize(10,12,"cm")
@@ -202,7 +209,7 @@ legend(arrayfun(@(t) sprintf("%1.1f°",rad2deg(t)),trange))
 xlabel("Time $t$, s",Interpreter="LaTeX")
 ylabel("Velocity $v$, m/s",Interpreter="LaTeX")
 title("Varying angle")
-saveas(gcf,"pdf/cruise-t0.pdf")
+saveplot(gcf,"pdf/cruise-t0.pdf")
 
 %% Similarly, varying throttle
 
@@ -233,7 +240,7 @@ plot(100*urange,vf,'.-')
 xlim([45 105])
 xlabel("Throttle, percent",Interpreter="LaTeX")
 ylabel("Steady state velocity $v$, m/s",Interpreter="LaTeX")
-saveas(gcf,"pdf/cruise-uv.pdf")
+saveplot(gcf,"pdf/cruise-uv.pdf")
 
 %% Now attempting to plot a phase portrait
 %
@@ -266,7 +273,7 @@ yline(0,"k--")
 xlabel("Velocity $v$, m/s",Interpreter="LaTeX")
 ylabel("Acceleration $\dot v$, m/s/s",Interpreter="LaTeX")
 title("Phase portrait")
-saveas(gcf,"pdf/cruise-phase.pdf")
+saveplot(gcf,"pdf/cruise-phase.pdf")
 
 %% Adding a PI cruise control system
 %
@@ -279,9 +286,11 @@ saveas(gcf,"pdf/cruise-phase.pdf")
 % Once again, the more closely the code can mirror the physics and maths
 % the better.
 
+param.kd = 0.01;
+
 function dq = cruise_ode(q,vr,gear,slope,param)
   v = q(1); z = q(2);
-  u = param.kp * (vr-v) + param.ki * z;
+  u = param.kp * (vr-v) + param.ki * z ;
   dv = car_dynamics(v,u,gear,slope,param);
   dz = vr - v;
   dq = [dv; dz];
@@ -303,7 +312,7 @@ yline(vr,"--","Desired","LabelHorizontalAlignment","left")
 plot(t,z(:,1))
 xlabel("Time $t$, s",Interpreter="LaTeX")
 ylabel("Velocity $v$, m/s",Interpreter="LaTeX")
-saveas(gcf,"pdf/cruise-step.pdf")
+saveplot(gcf,"pdf/cruise-step.pdf")
 
 %% Cruise control phase portrait
 %
@@ -339,4 +348,4 @@ yline(0,"k--","Steady state",Interpreter="LaTeX")
 xlabel("Velocity $v$, m/s",Interpreter="LaTeX")
 ylabel("Acceleration $\dot v$, m/s/s",Interpreter="LaTeX")
 title("Phase portrait")
-saveas(gcf,"pdf/cruise-portrait.pdf")
+saveplot(gcf,"pdf/cruise-portrait.pdf")
