@@ -6,34 +6,204 @@
 
 \begin{SUMMARY}
 \begin{itemize}
-\item Yyy
+\item Initial Condition Response
+\item Diagonal and Jordan forms
 \end{itemize}
 \vfill References:
 \begin{itemize}
-\item \astrom{Chapter Z}
+\item \astrom{§6.2}
 \end{itemize}
 \end{SUMMARY}
 
 
 
-\SUBCONCEPT{This is a Subconcept}
+\SUBCONCEPT{Initial Condition Response}
 
-\begin{frame}{This is a slide}
+\begin{frame}{Generalising system output}
+We have shown:
+\begin{align}\label{eq:impresp}
+y(t) = \int^t_0 \ImpulseResponse(t-\tau)u(\tau)\dee\tau
+\end{align}
+This form assumes zero initial conditions.
+
+In this concept we:
 \begin{itemize}
-\item a
-\item b
+\item generalise  \eqref{impresp},
+\item particularly for nonzero initial conditions.
 \end{itemize}
 \end{frame}
 
-
-\SUBCONCEPT{This is another Subconcept}
-
-\begin{frame}{This is another slide}
-\begin{itemize}
-\item c
-\item d
-\end{itemize}
+\begin{frame}
+\frametitle{Consider $u=0$}
+For unforced system:
+\begin{align}
+\dot x = A x
+\end{align}
+For scalar $A=a$, the solution is (naturally)
+\begin{align}
+x(t) = \ee^{at}x(0)
+\end{align}
+But note that $a$ could be complex!
 \end{frame}
+
+\begin{frame}
+\frametitle{For multiple states}
+
+For matrix $A$, we define solution
+\begin{align}
+x(t) = \ee^{At} x(0)
+\end{align}
+where $\ee^{At}$ is the \alert{matrix exponential}.
+\bigskip
+
+\begin{uncoverenv}<2>
+Define $\ee^{At}$ using Taylor series:
+\begin{align}
+\ee^{At} = I + At + \tfrac12 A^2t^2 + \tfrac{1}{3!}A^3+t^3 + \cdots = \sum_{k=0}^{\infty} \tfrac{1}{k!}A^kt^k
+\end{align}
+As expected: $\Deriv{}{t} \ee^{At} = A \ee^{At}$
+\end{uncoverenv}
+\end{frame}
+
+\begin{frame}
+\frametitle{Linearity of solutions}
+Example two-state system:
+\begin{align}
+x(t) = \Matr{x_1\\x_2} = \ee^{At}\Matr{x_1(0)\\x_2(0)}
+\end{align}
+\begin{uncoverenv}<2->
+Find solutions:
+\begin{align}
+x_{h1}(t) &= \ee^{At}\Matr{x_{1,0}\\0} &
+x_{h2}(t) &= \ee^{At}\Matr{0\\x_{2,0}} 
+\end{align}
+\end{uncoverenv}
+\begin{uncoverenv}<3->
+For arbitrary initial condition:
+\begin{align}
+\ee^{At}\Matr{\alpha x_{1,0}\\\beta x_{2,0}} = \ee^{At}\Matr{\alpha x_{1,0}\\0} + \ee^{At}\Matr{0\\\beta x_{2,0}} = \alpha x_{h1}(t) + \beta x_{h2}(t)
+\end{align}
+\end{uncoverenv}
+\end{frame}
+
+\begin{frame}
+\frametitle{Oscillator examples}
+For undamped oscillator (mass-spring):
+\begin{align}
+\ddot q + \ww_0^2 q  = u
+\end{align}
+Dynamics are normalised using $x_1=q$, $x_2 = \dot q/\ww_0$:
+\begin{align}
+A &= \Matr{0 & \ww_0\\ -\ww_0 & 0} & \ee^{At} &= \Matr{ \cos \ww_0 t & \sin \ww_0 t \\ -\sin \ww_0 t & \cos \ww_0 t}
+\end{align}
+Therefore:
+\begin{align}
+x(t) = \ee^{At} x(0) = \Matr{ \cos \ww_0 t & \sin \ww_0 t \\ -\sin \ww_0 t & \cos \ww_0 t} \Matr{x_1(0)\\ x_2(0)}
+\end{align}
+\end{frame}
+
+\begin{frame}
+\frametitle{Oscillator examples}
+For damped oscillator (mass-spring-damper):
+\begin{align}
+\ddot q + 2 \zz \ww_0 \dot q + \ww_0^2 q  = u
+\end{align}
+Skipping to the solution:
+\begin{align}
+x(t) = \ee^{At} x(0) = \ee^{-\zz\ww_0 t} \Matr{ \cos \ww_d t & \sin \ww_d t \\ -\sin \ww_d t & \cos \ww_d t} \Matr{x_1(0)\\ x_2(0)}
+\end{align}
+where $\wdamp = \ww_0 \sqrt{1-\zz^2}$ (damped natural frequency)
+\end{frame}
+
+
+
+\SUBCONCEPT{Diagonal and Jorden forms}
+
+\begin{frame}
+\frametitle{Diagonal forms}
+In the undamped example, $A = \left[\begin{smallmatrix} 0 & \ww_0\\ -\ww_0 & 0\end{smallmatrix}\right]$ and we saw the solution was a linear combination of components.
+
+\bigskip
+For larger matrices, can generalise to \alert{diagonal form}:\footnote{\alert{This is the standard convention, opposite the textbook!}}
+\begin{align}
+\Deriv{x}{t} &= Ax & x &= Tz & \Deriv{z}{t} &= T^{-1}ATz = Jz
+\end{align}
+(Transformed states $z$ are non-physical)
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Diagonal $A$ matrix}
+Find in Matlab with:
+\begin{lstlisting}[style=Matlab-editor]
+[T,J] = jordan(A)
+\end{lstlisting}
+For $A = \left[\begin{smallmatrix} 0 & \ww_0\\ -\ww_0 & 0\end{smallmatrix}\right]$:
+\begin{align}
+T &= \Matr{ \ii & -\ii \\ 1 & 1  } & J &= T^{-1}AT = \Matr{ -\ww_0 \ii & 0 \\ 0 & \ww_0 \ii}
+\end{align}
+We can now see intuitively that the solutions will be of the form $\ee^{\ii \ww_0 t}$ which are sinusoids.
+\end{frame}
+
+\begin{frame}
+\frametitle{Generalised diagonal matrix}
+Recall solutions are in the form
+\begin{align}
+\ee^{At} = I + At + \tfrac12 A^2t^2 + \tfrac{1}{3!}A^3+t^3 + \cdots = \sum_{k=0}^{\infty} \tfrac{1}{k!}A^kt^k
+\end{align}
+For diagonal $A$ matrices:
+\begin{align}
+A &= \Matr{ \lambda_1 &  &  & 0 \\  & \lambda_2 &  &  \\  &  & \ddots &  \\ 0 &  &  & \lambda_n } \,, &
+(At)^k &= \Matr{ \lambda_1^kt^k &  &  & 0 \\  & \lambda_2^kt^k &  &  \\  &  & \ddots &  \\ 0 &  &  & \lambda_n^kt^k }
+\end{align}
+Combining:
+\begin{align}\label{eq:diagform}
+\ee^{At} = \Matr{ \ee^{\lambda_1 t} &  &  & 0 \\  & \ee^{\lambda_2 t} &  &  \\  &  & \ddots &  \\ 0 &  &  & \ee^{\lambda_n t} }
+\end{align}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Jordan form}
+\begin{itemize}
+\item Diagonal transformations can't get us to \eqref{diagform} if we have repeated eigenvalues ($\lambda_i=\lambda_j$)
+\item In this case couple $k$ number of systems together:
+\end{itemize}
+\begin{align}
+J   &= \Matr{ J_1 &  &  & 0 \\  & J_2 &  &  \\  &  & \ddots &  \\ 0 &  &  & J_k } \,, &
+J_i &= \Matr{ \lambda_{i,1} & 1 &  & 0 \\  & \lambda_{i,2} & 1 &  \\  &  & \ddots &  \ddots \\ 0 &  &  & \lambda_{i,j} }
+\end{align}
+\end{frame}
+
+\begin{frame}
+\frametitle{Jordan form solution}
+\begin{itemize}
+\item Any square matrix can be written in Jordan form \AMref{Theorem 6.2}
+\item Once in Jordan form, solution comes as:
+\end{itemize}
+\begin{align}
+\ee^{At} = \Matr{ \ee^{J_1 t} &  &  & 0 \\  & \ee^{J_2 t} &  &  \\  &  & \ddots &  \\ 0 &  &  & \ee^{J_k t} }
+\end{align}
+with $\ee^{J_i t}$ given along subsequent lines \AMref{Eq (6.11)}
+\end{frame}
+
+\begin{frame}
+\frametitle{The big reveal}
+\begin{itemize}
+\item All of this maths is to bring is to a fundamental truth which links linear algebra to ordinary differential equations
+\item How do we look at an $A$ matrix to determine the properties of the system?
+\item Transformations of $A$ bring us to Jordan form, where see all solutions in terms of $\lambda_i$ eigenvalues:
+\end{itemize}
+\begin{align}
+\ee^{\lambda t} = \ee^{(\sigma + \ii \ww)t} = \ee^{\sigma t} ( \cos \ww t + \ii \sin \tt t)
+\end{align}
+Stability comes from $\sigma$, therefore:
+\begin{theorem}
+The system $\dot x=Ax$ is asymptotically stable if and only if all eigenvalues of $A$ have a strictly negative
+real part and is unstable if any eigenvalue of $A$ has a strictly positive real part.
+\end{theorem}
+\end{frame}
+
 
 
 \SUMMARYFRAME

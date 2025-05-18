@@ -157,6 +157,48 @@ Time invariance is a subtle concept:
 \end{frame}
 
 \begin{frame}
+\frametitle{Introducing dirac $\delta(t)$}
+
+Generalising the summation of discrete steps to an arbitrary input signal waveform:
+\begin{align}\label{eq:imp}
+u(t) = \int^t_0 \ImpulseInput(t-\tau)u(\tau)\dee\tau
+\end{align}
+where impulse input $\ImpulseInput(t)=S'(t)$ and $S(t)$ is a step input:
+\begin{align}
+S(t) &=
+\begin{cases}
+0 & t<0 \\
+1 & t\ge 0
+\end{cases}
+&
+\delta(t) &= 
+\lim_{\varepsilon\to0}
+\begin{cases}
+0 & t<0 \\
+\tfrac{1}{\varepsilon} & 0<t\le\epsilon \\
+0 & t>\epsilon
+\end{cases}
+\end{align}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Output of continuous signal}
+We have:
+\begin{align}\label{eq:imp}
+u(t) = \int^t_0 \ImpulseInput(t-\tau)u(\tau)\dee\tau
+\end{align}
+This produces output response:
+\begin{align}\label{eq:impresp}
+y(t) = \int^t_0 \ImpulseResponse(t-\tau)u(\tau)\dee\tau
+\end{align}
+where impulse response $\ImpulseResponse(t)=\StepResponse'(t)$ and $\StepResponse(t)$ is step response.
+
+\alert{\em The form of \eqref{impresp} is important for the following concepts.}
+
+\end{frame}
+
+\begin{frame}
 \frametitle{LTI systems}
 \begin{itemize}
 \item When is a system not time invariant? Consider, e.g.:

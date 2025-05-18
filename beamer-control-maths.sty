@@ -11,6 +11,11 @@
 \newcommand\TimeConst{T}
 \newcommand\StaticGain{K}
 
+\newcommand\StepInput{S}
+\newcommand\ImpulseInput{\delta}
+\newcommand\StepResponse{H}
+\newcommand\ImpulseResponse{h}
+
 \newcommand\ww{\omega}
 \newcommand\wn{\ww_n}
 \newcommand\wdamp{\ww_d} % wn*sqrt(1-zeta^2) — peak to peak frequency of oscillation
@@ -56,11 +61,14 @@
 \newcommand\CLTF{\frac{\Gplant\Hcontroller}{\Gplant\Hcontroller+1}}
 \newcommand\PIDTF{\frac{K_p(T_iT_ds^2 + T_i s + 1)}{T_i s}}
 
-\newcommand\Kdc{K_0}
+\newcommand\DCgain{M_0}
+\newcommand\Kdc{\DCgain}
+\newcommand\Mpeak{M_p}
 
 \newcommand\Exp[1]{\ee^{#1}}
 \newcommand\dee{\mathrm{d}}
 \newcommand\Deriv[2]{\frac{\dee #1}{\dee #2}}
+\newcommand\PDeriv[2]{\frac{\partial #1}{\partial #2}}
 
 \newcommand\Tr{^{\mathsf T}}
 
