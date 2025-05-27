@@ -171,7 +171,8 @@
 %%%%%%%%%%%%%%%
 
 \numberwithin{equation}{subsection}
-\renewcommand{\maketag@@@}[1]{\hbox{\m@th\tiny\normalfont#1}}%
+\renewcommand{\theequation}{\thesection.\thesubsection.\arabic{equation}}
+\renewcommand{\maketag@@@}[1]{\makebox[0pt][l]{\m@th\tiny\normalfont#1}}%
 \renewcommand\eqref[1]{(\ref{eq:#1})}
 
 \renewcommand\partname{Module}
@@ -297,7 +298,11 @@
 \setbeamertemplate{headline}
   {%
     \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{upper separation line head}
-      \hfill\smash{\raisebox{-3.5ex}{\color[gray]{0.6}\fbox{\ifnum\c@section>0\relax\arabic{section}-\fi\ifnum\c@subsection>0\relax\arabic{subsection}-\else 0\fi\insertframenumber}~}}
+      \hfill\smash{\raisebox{-3.5ex}{\color[gray]{0.6}\fbox{%
+        \ifnum\c@section>0\relax\arabic{section}-\fi
+        \ifnum\c@subsection>0\relax\arabic{subsection}-\else 0\fi
+        \insertframenumber
+      }~}}
     \end{beamercolorbox}
     \ifdefined\currMODULE
     \begin{beamercolorbox}[wd=\paperwidth,ht=4.5ex,dp=1.125ex,%
