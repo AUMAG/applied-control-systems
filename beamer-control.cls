@@ -12,6 +12,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{graphicx}
+
 \def\PATHSETUP#1{
   \def\input@path{#1}
   \graphicspath{#1}
