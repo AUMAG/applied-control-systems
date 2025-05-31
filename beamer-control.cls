@@ -18,10 +18,8 @@
   \graphicspath{#1}
 }
 \PATHSETUP{
-  {matlab/}
   {figures/}
   {pracs/}
-  {workshops/}
   {topic1/}
   {topic2/}
   {topic3/}
@@ -32,10 +30,8 @@
   {topic8/}
   {topic9/}
   % the following is to allow the makefile to build without having to manually copy everything into _build/:
-  {../matlab/}
   {../figures/}
   {../pracs/}
-  {../workshops/}
   {../topic1/}
   {../topic2/}
   {../topic3/}
