@@ -6,32 +6,70 @@
 
 \begin{SUMMARY}
 \begin{itemize}
-\item Yyy
+\item Model simplification
+\item Pole placement
 \end{itemize}
 \vfill References:
 \begin{itemize}
-\item \astrom{Chapter Z}
+\item \astrom{§11.2}
 \end{itemize}
 \end{SUMMARY}
 
 
 
-\SUBCONCEPT{This is a Subconcept}
+\SUBCONCEPT{Model simplification}
 
-\begin{frame}{This is a slide}
+\begin{frame}{Low-order models for low-order controllers}
 \begin{itemize}
-\item a
-\item b
+\item Design methods for controllers typically rely on matching the complexity of the controller with the complexity of the model
+\item Therefore PID control requires models of first or second order
+\item Low-order models can be obtained through first principles or by using model reduction techniques
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Static models}
+\begin{itemize}
+	\item Any stable system can be modelled by a static system if its inputs are sufficiently slow, which approximates the transfer function by a constant 
+	\[K=P(0)\]
+	\item Using integral control, the controller is $K\tfrac{k_i}{s}$ with closed loop characteristic polynomial $s+Kk_i$
+	\item Specifying the performance of the controlled system by the desired time constant $T_{cl}$ of the closed loopn system, we have
+	\[k_i = \frac{1}{T_c P(0)}\]
+	\item A reasonable criterion for the process transfer function to be well approximated by a constant is that the average residence time $T_{ar}=\tfrac{-P'(0)}{P(0)}$ satisfies $T_{ar}<T_{cl}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{First-order models}
+\begin{itemize}
+	\item We may instead approximate the dynamics by a first-order system to achieve higher performance
+	\item The process dynamics are then approximated as 
+	\[P(s) \approx \frac{P(0)}{1+sT_{ar}}\]
+	\item To achieve a step response with small overshoot and reasonable response time we may choose an integral controller with gain
+	\[k_i = \frac{1}{2P(0)T_{ar}}\]
+	\item This controller has $\omega_0 = \tfrac{1}{T_{ar}\sqrt{2}}$, with rise time of $3.1 T_{ar}$, settling time of $7.9T_{ar}$, and overshoot of 4\%
 \end{itemize}
 \end{frame}
 
 
-\SUBCONCEPT{This is another Subconcept}
+\SUBCONCEPT{Pole placement}
 
-\begin{frame}{This is another slide}
+\begin{frame}{Specifying system dynamics}
 \begin{itemize}
-\item c
-\item d
+\item Another approach is to use the gains of the controller to set the location of the closed loop poles
+\item PI controllers have two gains which may set the closed loop poles for simple models
+\item Consider a first-order system with transfer function 
+\[P(s) = \frac{b}{s+a}\]
+\item Comparing the desired and closed loop characteristic polynomials with a PI controller
+\[s^2+a_1s+a_2 = s^2 (a_bk_p)s+bk_i\]
+\item We may therefore assign arbitrary values of the closed loop poles via PI control
+\[k_p=\frac{a_1-a}{b}, \quad k_i = \frac{a_2}{b}\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Higher order systems}
+\begin{itemize}
+	\item A PI controller can be used with second-order dynamics but there are restrictions to the possible locations of the closed loop poles
+	\item A PID controller can be used to control the system to have arbitrary locations
+	\item For higher order systems, we may instead attempt to place only the dominant poles of the system
 \end{itemize}
 \end{frame}
 

@@ -23,7 +23,7 @@
 \begin{itemize}
 \item The dynamics of a linear system may be represented by its frequency response and graphically illustrated by a Bode plot
 \item We may also graphically represent the frequency response on one graph by using a Nyquist plot, plotted on the complex plane
-\item The Nyquist plot of a loop transfer function $L(s)$ is formed by tracing $s\in\mathbb{C}$ around the Nyquist contour $\Gamma$ (given by the imaginary axis combined with an arc at infinite connecting the endpoints of the imaginary axis)
+\item The Nyquist plot of a loop transfer function $L(s)$ is formed by tracing $s\in\mathbb{C}$ around the Nyquist contour $\Gamma$ (given by the imaginary axis combined with an arc at infinity connecting the endpoints of the imaginary axis)
 \item At any point on the Nyquist plot corresponding to a frequency $s=i\omega$, the distance away from the origin gives the magnitude of the loop transfer function $L(s)$ and the angle with the imaginary axis gives the phase
 \end{itemize}
 \end{frame}
@@ -41,8 +41,7 @@
 
 \SUBCONCEPT{Nyquist criterion}
 
-\begin{frame}{Condition for stability}
-	\textbf{Nyquist criterion}
+\begin{frame}{Condition for stability - Nyquist criterion}
 \begin{itemize}
 \item Let $L(s)$ be the loop transfer function for a negative feedback system and assume that $L$ has no poles in the closed right half-plane expect possible at the origin
 \item Then the closed loop system \[G_{cl}=\frac{L(s)}{1+L(s)}\]
