@@ -195,7 +195,7 @@ $n_{pe} = (N_P-N_Z)$ is used often and termed the `poles excess'
 \begin{columns}
 \column{0.5\linewidth}
   \[
-    G_{\mathrm{delay}} = \Exp{-s\tau}
+    G_{\mathrm{delay}} = \Exp{-\tau s}
   \]
 \begin{itemize}
   \item No effect on magnitude
@@ -211,16 +211,16 @@ $n_{pe} = (N_P-N_Z)$ is used often and termed the `poles excess'
 \begin{frame}
 \frametitle{Padé approximation}
 The exponential delay term $\exp(-s\tau)$ is not a rational function,
-so we approximate it using the \alert{Padé approximation}.
+so we often approximate it using the \alert{Padé approximation}.
 
 This begins with the Maclaurin series of the delay, but we can't use this directly because truncating the series doesn't give us a well-behaved transfer function:
 \begin{align}
-\Exp{-s \tau} &= 1 - \tau s + \frac{1}{2!}(\tau s)^2 - \dots + \frac{(-1)^n}{n!}(\tau s)^n + \dots 
+\Exp{-\tau s} &= 1 - \tau s + \frac{1}{2!}(\tau s)^2 - \dots + \frac{(-1)^n}{n!}(\tau s)^n + \dots 
 \end{align}
 
 The Padé approximation of order $n$ is a ratio of polynomials that matches the series up to the same order:
 \begin{align}\label{eq:pade}
-\Exp{-s \tau} &\approx \mathrm{PD}(\tau,n) = \frac{ \sum_{k=0}^n (-1)^k c_k (\tau s)^k  }
+\Exp{-\tau s} &\approx \mathrm{PD}(\tau,n) = \frac{ \sum_{k=0}^n (-1)^k c_k (\tau s)^k  }
                             { \sum_{k=0}^n        c_k (\tau s)^k  } \,, &
           c_k &= \frac{ (2n-k)!n! }{ (2n)!k!(n-k)! }
 \end{align}
@@ -250,13 +250,13 @@ The Taylor series expansion of \eqref{pd21} around $s=0$ is:
 
 Eq \eqref{pade} looks frightful but you can see the pattern:
 \begin{align}
-\mathrm{PD}(2,1) &= \frac{  -s + 1 }{  s + 1 } 
+\mathrm{PD}(2,1) &= \frac{  -s + 1 }{  \phantom{+}s + 1 } 
 \end{align}
 \begin{align}
 \mathrm{PD}(2,2) &= \frac{  s^2 - 3 s + 3 }{  s^2 + 3 s + 3 } 
 \end{align}
 \begin{align}
-\mathrm{PD}(2,4) &= \frac{ -s^3 + 6 s^2 - 15 s + 15 }{  s^3 + 6 s^2 + 15 s + 15 }
+\mathrm{PD}(2,4) &= \frac{ -s^3 + 6 s^2 - 15 s + 15 }{  \phantom{+}s^3 + 6 s^2 + 15 s + 15 }
 \end{align}
 \end{frame}
 
@@ -358,6 +358,7 @@ Usually avoid using Matlab's \texttt{fft} command --- use \texttt{pwelch} and \t
 \begin{frame}
 \frametitle{Matlab example --- sysid from time-domain data}
 
+\small
 \begin{columns}
 \column{0.5\textwidth}
 From System Identification Toolbox: (example in \texttt{doc tfest})
