@@ -55,7 +55,7 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 \begin{enumerate}
 	\item First we need to measure the velocity of the inertia disk, which can be facilitated through adding in a low-pass filter and a Derivative block, additionally connect this to a Scope, choose a low cutoff frequency of $f_c=10$ rad/s for the low-pass filter
 	\item You will see after running the Simulink file that in this case the ITD model is not a great fit, we instead need to use the First Order Time Delay (FOTD) model which is on the following slide
-	\item Calculate the FOTD parameters $a$, $T_{63}$, and $\tau$, and using the FOTD Chien-Hrones-Reswick tuning law calculate the corresponding PID gains (note we do not need a low-pass filter for the derivative gain as our signal is already filtered)
+	\item Calculate the FOTD parameters $a$, $T$, and $\tau$, and using the FOTD Chien-Hrones-Reswick tuning law calculate the corresponding PID gains (note we do not need a low-pass filter for the derivative gain as our signal is already filtered)
 	\item Run the plant and controller with these gains and assess the performance to a step input of $20$ (this is setting a desired angular velocity of $20$ rad/s)
 	\item Repeat with the Cohen-Coon tuning law and compare
 \end{enumerate}
@@ -138,7 +138,7 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 					\hline
 					$K_p$ & $T_i$ & $T_d$\\
 					\hline
-					$\frac{0.6}{a}$ & $T_{63}$ & $\frac{\tau}{2}$\\
+					$\frac{0.6}{a}$ & $T$ & $\frac{\tau}{2}$\\
 					\hline	
 				\end{tabular}
 				\caption{FOTD Chien-Hrones-Reswick tuning law (0\% overshoot)}
@@ -150,10 +150,10 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 					\hline
 					$K_p$ & $T_i$ & $T_d$\\
 					\hline
-					\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 T}{1-T} \right)$} & \tiny{$ \tau\left( \frac{2.5-2T}{1-0.39T} \right) $} & \tiny{$\tau \left( \frac{0.37-0.37T}{1-0.81T} \right)$}\\
+					\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 \hat{T}}{1-\hat{T}} \right)$} & \tiny{$ \tau\left( \frac{2.5-2\hat{T}}{1-0.39\hat{T}} \right) $} & \tiny{$\tau \left( \frac{0.37-0.37\hat{T}}{1-0.81\hat{T}} \right)$}\\
 					\hline	
 				\end{tabular}
-				\caption{Cohen-Coon tuning law where $T=\frac{\tau}{\tau+T_{63}}$}
+				\caption{Cohen-Coon tuning law where $\hat{T}=\frac{\tau}{\tau+T}$}
 			\end{table}
 		\end{column}
 	\end{columns}
