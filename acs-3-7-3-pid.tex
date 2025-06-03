@@ -85,7 +85,7 @@
 		\item The first-order time-delay (FOTD) model
 		\[P(s) = \frac{K}{1+sT}e^{-\tau s}\]
 		can be used to approximate the step response of systems that achieve a steady state after a step input
-		\item The relative time delay $\tau_n = \tfrac{\tau}{T+\tau}$
+		\item The relative time delay $\tau_n = \tfrac{\tau}{\tau+T}$
 		has values between $0$ and $1$ and characterises the dynamics of the system
 		\item If $\tau_n$ is close to $0$ the dynamics are lag dominated, if $\tau_n$ is close to $1$ the dynamcis are delay dominated, and the dynamics are said to be balanced for intermediate values of $\tau_n$
 	\end{itemize}
@@ -131,10 +131,10 @@
 		\hline
 		$K_p$ & $T_i$ & $T_d$\\
 		\hline
-		\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 \hat{T}}{1-\hat{T}} \right)$} & \tiny{$ \tau\left( \frac{2.5-2\hat{T}}{1-0.39\hat{T}} \right) $} & \tiny{$\tau \left( \frac{0.37-0.37\hat{T}}{1-0.81\hat{T}} \right)$}\\
+		\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 \tau_n}{1-\tau_n} \right)$} & \tiny{$ \tau\left( \frac{2.5-2\tau_n}{1-0.39\tau_n} \right) $} & \tiny{$\tau \left( \frac{0.37-0.37\tau_n}{1-0.81\tau_n} \right)$}\\
 		\hline	
 	\end{tabular}
-	\caption{Cohen-Coon tuning law where $\hat{T}=\frac{\tau}{\tau+T}$}
+	\caption{Cohen-Coon tuning law where $\tau_n=\frac{\tau}{\tau+T}$}
 \end{table}
 \end{column}
 \end{columns}

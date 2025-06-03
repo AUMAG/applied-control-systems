@@ -103,7 +103,7 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 	\vfill
 	
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
+		\begin{column}{0.4\textwidth}
 			ITD tuning laws
 			\begin{table}
 				\centering
@@ -129,7 +129,7 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 				\caption{ITD Chien-Hrones-Reswick tuning law (0\% overshoot)}
 			\end{table}
 		\end{column}
-		\begin{column}{0.5\textwidth} 
+		\begin{column}{0.6\textwidth} 
 			
 			FOTD tuning laws
 			\begin{table}
@@ -150,10 +150,10 @@ Suppose we instead wish to control the angular velocity of the inertia disk to i
 					\hline
 					$K_p$ & $T_i$ & $T_d$\\
 					\hline
-					\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 \hat{T}}{1-\hat{T}} \right)$} & \tiny{$ \tau\left( \frac{2.5-2\hat{T}}{1-0.39\hat{T}} \right) $} & \tiny{$\tau \left( \frac{0.37-0.37\hat{T}}{1-0.81\hat{T}} \right)$}\\
+		\tiny{$\frac{1.35}{a}\left(1 + \frac{0.18 \tau_n}{1-\tau_n} \right)$} & \tiny{$ \tau\left( \frac{2.5-2\tau_n}{1-0.39\tau_n} \right) $} & \tiny{$\tau \left( \frac{0.37-0.37\tau_n}{1-0.81\tau_n} \right)$}\\
 					\hline	
 				\end{tabular}
-				\caption{Cohen-Coon tuning law where $\hat{T}=\frac{\tau}{\tau+T}$}
+				\caption{Cohen-Coon tuning law where $\tau_n=\frac{\tau}{\tau+T}$}
 			\end{table}
 		\end{column}
 	\end{columns}
