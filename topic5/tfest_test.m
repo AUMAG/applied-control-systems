@@ -24,7 +24,7 @@ plot(freq,mag2db(mag(:)))
 %</frf>
 
 xlabel("Frequency, Hz")
-ylabel("Magnitude")
+ylabel("Magnitude, dB")
 legend("Measured","Estimated")
 
 saveas(gcf,"idfreq.pdf")
