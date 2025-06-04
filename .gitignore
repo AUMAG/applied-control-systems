@@ -24,3 +24,5 @@ _*
 *.autosave
 *.slxc
 slprj/
+
+ignore/
