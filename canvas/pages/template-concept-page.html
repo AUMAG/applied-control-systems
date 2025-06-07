@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="https://instructure-uploads-apse2.s3.ap-southeast-2.amazonaws.com/account_264300000000000001/attachments/2106/dp_app%20%25281%2529.css">
+<div id="dp-wrapper" class="dp-wrapper">
+    <div class="dp-content-block">
+        <h2>Topic {{T}}: {{Topic}}</h2>
+        <p><em style="font-family: inherit; font-size: 1rem;">{{Concept intro}}<em></em></em></p>
+        <em style="font-family: inherit; font-size: 1rem;"><em> </em></em>
+    </div>
+    <div class="dp-content-block" data-title="Video" data-category="Page element">
+        <h3 class=""><i class="fas fa-video"><span class="dp-icon-content" style="display: none;">&nbsp;</span></i> Video</h3>
+        <div class="dp-action-item dp-action-item-block dp-action-item-note" style="display: none;" aria-hidden="true">
+            <p>&nbsp;</p>
+        </div>
+        <p><a class="btn btn-warning" href="{{%20FileUrl(FileName)%20}}" data-api-endpoint="{{ FileUrlBase(FileName) }}" data-api-returntype="File"><i class="icon-collection "><span class="dp-icon-content" style="display: none;">&nbsp;</span></i> Slides: {{ FileName }}</a></p>
+        <p>Insert video here.</p>
+    </div>
+    <div class="dp-content-block" data-title="Reading" data-category="Page element">
+        <h3 class=""><i class="fas fa-book-open"><span class="dp-icon-content" style="display: none;">&nbsp;</span></i> Reading</h3>
+        <p><a class="btn btn-success" href="{{%20TextbookURL%20}}"><i class="fas fa-book "><span class="dp-icon-content" style="display: none;">&nbsp;</span></i> Å&amp;M: {{ Textbook }}</a>&nbsp;</p>
+    </div>
+    <div class="dp-content-block">
+        <h3 class="dp-has-icon"><i class="far fa-compass"><span class="dp-icon-content" style="display: none;">&nbsp;</span></i> Navigation</h3>
+    </div>
+    <div class="dp-content-block">
+        <div class="dp-column-container container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <p>&nbsp;</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <p><a class="btn dp-course-link btn-block btn-dp-secondary" title="{{T}}. {{Module}}: {{Topic}}" href="{{%20canvas_topic_page_url%20}}" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/3907/pages/1-dynamical-systems-introduction-and-system-modelling" data-api-returntype="Page"><i class="fas fa-angle-double-up "><span class="dp-icon-content" style="display: none;">&nbsp;</span></i>{{T}}. {{Module}}: {{Topic}}</a></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <p><a class="btn btn-outline-primary dp-course-link btn-block" title="{{ canvas_next_concept_page_name }}" href="{{%20canvas_next_concept_page_url%20}}" data-api-endpoint="https://learn.adelaide.edu.au/api/v1/courses/3907/pages/1-dot-2-modeling-concepts" data-api-returntype="Page"><i class="fas fa-angle-double-right "><span class="dp-icon-content" style="display: none;">&nbsp;</span></i> {{ canvas_next_concept_page_name }}</a></p>
+                </div>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+</div>
+<script src="https://instructure-uploads-apse2.s3.ap-southeast-2.amazonaws.com/account_264300000000000001/attachments/2105/dp_app%20%25282%2529.js"></script>
