@@ -10,17 +10,15 @@ PAGESNEW = $(shell git status --porcelain pages/ | grep '^[ ]*M' | cut -c4- | xa
 .RECIPEPREFIX = >
 
 help:
-> @echo "gmakefile for canvas. Targets:"
-> @echo "        pages : delete HTML sources and re-download them from Canvas"
+> @echo "gmake file for canvas. Targets:"
+> @echo "          get : delete HTML sources and re-download them from Canvas"
 > @echo "         send : upload HTML pages to Canvas which have been modified according to Git"
+> @echo "      install : use brew to install dependencies"
+> @echo "         edit : open Makefile in BBEdit"
 
-.PHONY: pages install
+.PHONY: get send install edit
 
-install:
-> brew install make
-> brew install js-beautify
-
-pages:
+get:
 > mkdir -p pages
 > rm -f pages/*.html
 > lua canvas-get-pages.lua
@@ -28,8 +26,14 @@ pages:
 
 send:
 > for file in $(PAGESNEW); do \
->     #echo "SEND $$file:"
 >     lua canvas-send-page.lua "$$file"; \
 > done
 > git add pages/
 > git commit -m "auto commit uploaded changes"
+
+install:
+> brew install make
+> brew install js-beautify
+
+edit:
+> bbedit Makefile
