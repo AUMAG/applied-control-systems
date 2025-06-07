@@ -1,0 +1,10 @@
+TITLE,ACS Practical Workbook,,,
+DESCRIPTION,Prac workbook rubric for Applied Control Systems,,,
+,,,,
+ROW TITLE,Workbook,,,
+ROW DESCRIPTION,,,,
+ROW POINTS,3,,,
+ROW USE RANGE,FALSE,,,
+CELL TITLES,Poor effort (fail),Limited (fail),Sufficient (pass),Good (pass)
+CELL DESCRIPTIONS,Unfinished or incomprehensible,"Some results, interpretations, or plots missing; limited understanding","Adequate plots, evidence of understanding, adequate descriptions of results","Nice plots, evidence of understanding and thinking beyond what is required, great descriptions of results"
+CELL POINTS,0,1,2,3

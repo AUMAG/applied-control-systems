@@ -1,0 +1,51 @@
+TITLE,ACS Practical Project,,,,,
+DESCRIPTION,Practical project report rubric for Applied Control Systems,,,,,
+,,,,,,
+ROW TITLE,Formatting,,,,,
+ROW DESCRIPTION,"High quality figures and graphs, typography, typesetting, document structure, tables of contents, figure captions. Etc.",,,,,
+ROW POINTS,10,,,,,
+ROW USE RANGE,TRUE,,,,,
+CELL TITLES,Unreadable,Poor effort,Sufficient,Average,Great,Industry / PhD quality
+CELL DESCRIPTIONS,,,,,,
+CELL POINTS,0,2.5,5,7.5,9,10
+,,,,,,
+,,,,,,
+ROW TITLE,Writing Style,,,,,
+ROW DESCRIPTION,"Grammar, spelling, tenses, formality, completeness, flow. Etc. Appropriate introduction and conclusion. Must include executive summary.",,,,,
+ROW POINTS,10,,,,,
+ROW USE RANGE,TRUE,,,,,
+CELL TITLES,Unreadable,Poor effort,Sufficient,Average,Great,Industry / PhD quality
+CELL DESCRIPTIONS,,,,,,
+CELL POINTS,0,2.5,5,7.5,9,10
+,,,,,,
+ROW TITLE,Systems overview,,,,,
+ROW DESCRIPTION,"Explanation (and possibly derivation) of dynamics, actuator, interfacing with sensor(s), input signals, output signals, ranges of electrical signals. Schematic / flow diagram needed.",,,,,
+ROW POINTS,20,,,,,
+ROW USE RANGE,TRUE,,,,,
+CELL TITLES,Missing or nonsense,Poor effort,Sufficient,Average,Great,Industry / PhD quality
+CELL DESCRIPTIONS,,,,,,
+CELL POINTS,0,5,10,15,18,20
+,,,,,,
+ROW TITLE,Open loop characterisations,,,,,
+ROW DESCRIPTION,"Sensor calibration, signal normalisation, step responses, nonlinearities, frequency responses. Characterisation of plant model (transfer function, ITD/FOTD parameters, etc., as appropriate).",,,,,
+ROW POINTS,20,,,,,
+ROW USE RANGE,TRUE,,,,,
+CELL TITLES,Missing or nonsense,Poor effort,Sufficient,Average,Great,Industry / PhD quality
+CELL DESCRIPTIONS,,,,,,
+CELL POINTS,0,5,10,15,18,20
+,,,,,,
+ROW TITLE,Control systems,,,,,
+ROW DESCRIPTION,"Use of at least one tuning recipe, characterising performance (settling time, overshoot, etc.). Manual tuning improvements to improve default response. Discussion of desired performance and obstacles for improving performance.",,,,,
+ROW POINTS,20,,,,,
+ROW USE RANGE,TRUE,,,,,
+CELL TITLES,Missing or nonsense,Poor effort,Sufficient,Average,Great,Industry / PhD quality
+CELL DESCRIPTIONS,,,,,,
+CELL POINTS,0,5,10,15,18,20
+,,,,,,
+ROW TITLE,Performance and robustness,,,,,
+ROW DESCRIPTION,"Exploration of system behaviour under varying conditions, including but not limited to robustness to parameter variation (e.g., mass variation), measurement noise, disturbances. Changes in performance vs variations. Limits of stability.",,,,,
+ROW POINTS,20,,,,,
+ROW USE RANGE,TRUE,,,,,
+CELL TITLES,Missing or nonsense,Poor effort,Sufficient,Average,Great,Industry / PhD quality
+CELL DESCRIPTIONS,,,,,,
+CELL POINTS,0,5,10,15,18,20
