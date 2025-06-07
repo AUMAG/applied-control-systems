@@ -12,6 +12,7 @@ PAGESNEW = $(shell git status --porcelain pages/ | grep '^ M' | cut -c4- | xargs
 help:
 > @echo "gmakefile for canvas. Targets:"
 > @echo "        pages : delete HTML sources and re-download them from Canvas"
+> @echo "         send : upload HTML pages to Canvas which have been modified according to Git"
 
 .PHONY: pages install
 
