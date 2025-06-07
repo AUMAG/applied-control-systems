@@ -4,7 +4,7 @@ ifeq ($(origin MAKE_VERSION), undefined)
 $(error This Makefile must be run with GNU Make. Try 'gmake', not 'make'.)
 endif
 
-PAGESNEW = $(shell git status --porcelain pages/ | grep '^ M' | cut -c4- | xargs -n1 basename)
+PAGESNEW = $(shell git status --porcelain pages/ | grep '^[ ]*M' | cut -c4- | xargs -n1 basename)
 
 .ONESHELL:
 .RECIPEPREFIX = >
@@ -31,3 +31,5 @@ send:
 >     #echo "SEND $$file:"
 >     lua canvas-send-page.lua "$$file"; \
 > done
+> git add pages/
+> git commit -m "auto commit uploaded changes"

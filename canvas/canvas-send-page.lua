@@ -21,7 +21,6 @@ for title,page in pairs(canvas.pages) do
       print("Failed to open file: ", filename)
     end
     xx = canvas:update_page(title,{body=content})
-    print("RESPONSE:")
-    dump(xx)
+    print("Done.")
   end
 end
