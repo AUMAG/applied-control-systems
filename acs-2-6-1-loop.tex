@@ -43,11 +43,11 @@ which represents the transfer function from input at A to output at B multiplied
 \begin{frame}{Condition for stability}
 	
 \begin{itemize}
-	\item Consider inputting a sinusoidal input of frequnecy $\omega_0$ at A
+	\item Consider inputting a sinusoidal input of frequency $\omega_0$ at A
 	\item To maintain the oscillation, the signal at B will also be a sinusoid with frequency $\omega_0$ and therefore
 	\[L(i\omega_0)=-1.\]
 	\item This condition says that our frequency response passes through the value of $-1$, known as the \textit{critical point}
-	\item If we require stability at a freuqency $\omega_c$ such that $\angle L\left(i \omega_{\mathrm{c}}\right)=180^{\circ}$, we therefore want our signal at B to have a smaller amplitude than the input at A and so $|L(i\omega_c)|<1$
+	\item If we require stability at a frequency $\omega_c$ such that $\angle L\left(i \omega_{\mathrm{c}}\right)=180^{\circ}$, we therefore want our signal at B to have a smaller amplitude than the input at A and so $|L(i\omega_c)|<1$
 \end{itemize}
 \end{frame}
 
@@ -70,7 +70,7 @@ which represents the transfer function from input at A to output at B multiplied
 \begin{itemize}
 \item The magnitude of the transfer function does not change with the delay but the phase does
 \item Therefore we may get oscillations in the closed loop system if delay is present
-\item We can use the Bode plots of the loop transfer function to assess what the magnitude of the output signal of the loop transfer function is correspondoing to a phase of $180^\circ$
+\item We can use the Bode plots of the loop transfer function to assess what the magnitude of the output signal of the loop transfer function is corresponding to a phase of $180^\circ$
 \item If $\theta_0$ is the phase of the undelayed system at a frequency $\omega_0$, then a time delay of 
 \[\tau_c=\frac{\pi+\theta_0}{\omega_0}\]
 will cause $L(i\omega_0)$ to be equal to $-1$
@@ -80,9 +80,9 @@ will cause $L(i\omega_0)$ to be equal to $-1$
 
 \begin{frame}{Example continued}
 \begin{itemize}
-\item For no delay $\tau=0$, the phase of $L(s)$ approaches $180^\circ$ but doesn't reach it and so the system is stable
-\item For a delay of $\tau=\tau_c$, when the phase of $L(s)$ is $180^\circ$, the magnitude is $1$ and so the system maintains oscillation
-\item For a delay of $\tau=3\tau_c$, the corresponding magnitude at $180^\circ$ phase is greater than $1$, resulting in instability
+\item For no delay $\tau=0$, the phase of $L(s)$ approaches \ang{180} but doesn't reach it and so the system is stable
+\item For a delay of $\tau=\tau_c$, when the phase of $L(s)$ is \ang{180}, the magnitude is $1$ and so the system maintains oscillation
+\item For a delay of $\tau=3\tau_c$, the corresponding magnitude at \ang{180} phase is greater than $1$, resulting in instability
 \end{itemize}
 \begin{figure}
 \centering
