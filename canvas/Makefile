@@ -4,6 +4,8 @@ ifeq ($(origin MAKE_VERSION), undefined)
 $(error This Makefile must be run with GNU Make. Try 'gmake', not 'make'.)
 endif
 
+PAGESNEW = $(shell git status --porcelain pages/ | grep '^ M' | cut -c4- | xargs -n1 basename)
+
 .ONESHELL:
 .RECIPEPREFIX = >
 
@@ -22,3 +24,9 @@ pages:
 > rm -f pages/*.html
 > lua canvas-get-pages.lua
 > html-beautify --indent-preserve-newlines -r pages/*.html
+
+send:
+> for file in $(PAGESNEW); do \
+>     #echo "SEND $$file:"
+>     lua canvas-send-page.lua "$$file"; \
+> done
