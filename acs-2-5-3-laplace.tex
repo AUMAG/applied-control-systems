@@ -41,16 +41,32 @@
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}
+\frametitle{Interlude: complex frequency to real frequency}
+You may be concerned that there is no such thing as complex frequency or negative frequency. Consider:
+\begin{align}
+\ee^{\jj\ww t} + \alert{\ee^{\jj(-\ww) t}} &= \cos(\ww t)+\ii \sin(\ww t) + \alert{ \cos(-\ww t)+\ii \sin(-\ww t)} \\
+&= \cos(\ww t)+\ii \sin(\ww t) + \alert{ \cos(\ww t)-\ii \sin(-\ww t)} \\
+&= 2\cos(\ww t)
+\end{align}
+Also note that
+\begin{align}
+\Real\{\ee^{\jj\ww t}\} = \cos(\ww t)
+\end{align}
+\end{frame}
+
+
 \SUBCONCEPT{The Laplace transform}
 
 \begin{frame}{Mathematically}
   Laplace transform for $s\in\mathbb{C}$:\footnote{N.B. some variances in how the limits are defined, not important here.}
   \begin{gather}
-  \mathcal{L}\{f(t)\} = F(s) = \int_0^\infty f(t) e^{-st} dt
+  \mathcal{L}\{f(t)\} = F(s) = \int_0^\infty f(t) \Exp{-st} dt
   \end{gather}
   Fourier transform for $s=\ii\omega$, with $\omega\in\mathbb{R}$:
   \begin{gather}
-  \mathcal{F}\{f(t)\} = F(\omega) = \int_{-\infty}^\infty f(t) e^{-\ii\omega t} dt
+  \mathcal{F}\{f(t)\} = F(\omega) = \int_{-\infty}^\infty f(t) \Exp{-\ii\omega t} dt
   \end{gather}
   These are linear transforms:
   \begin{gather}
@@ -60,13 +76,27 @@
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Example derivation}
+Consider exponential $f(t)=\Exp{-at}$:
+  \begin{align}
+  \mathcal{L}\{f(t)\} = F(s) &= \int_0^\infty \Exp{-at}\Exp{-st} \dee t \\
+  &= \int_0^\infty \Exp{-(a+s)t} \dee t \\
+  &= \left[-\frac{1}{s+a} \Exp{-(a+s)t}\right]_{0}^{\infty} \\
+  &= \left[ -\frac{1}{s+a} \cdot 0 \right] - \left[ -\frac{1}{s+a} \cdot 1 \right] \\
+  &= \frac{1}{s+a}
+  \end{align}
+\end{frame}
+
+
+
 \begin{frame}{This is not a course about transforms}
   Need to know (memorise):
   \begin{align}
   s &= \sigma+\jj\ww \qquad (\jj^2=-1) \\
   \mathcal{L}\bigl\{f(t)\bigr\} &= F(s) \\
-  \mathcal{L}\bigl\{\frac{d}{dt}f(t)\bigr\} &= sF(s)  \\
-  \mathcal{L}\bigr\{\int f(t)dt\bigr\} &= \frac{1}{s}F(s)
+  \mathcal{L}\bigl\{\Deriv{}{t}f(t)\bigr\} &= sF(s)  \\
+  \mathcal{L}\bigr\{\int f(t)\dee t\bigr\} &= \frac{1}{s}F(s)
   \end{align}
   Note, in control, we always linearise our systems around an equilibrium and can therefore ignore initial conditions $f(0)$
 \end{frame}
