@@ -24,12 +24,14 @@ get:
 > lua canvas-get-pages.lua
 > html-beautify --indent-preserve-newlines -r pages/*.html
 
+msg ?= "autocommit after http canvas send"
+
 send:
 > for file in $(PAGESNEW); do \
 >     lua canvas-send-page.lua "$$file"; \
 > done
 > git add pages/
-> git commit -m "auto commit uploaded changes"
+> git commit -m "$(msg)"
 
 install:
 > brew install make
