@@ -6,35 +6,90 @@
 
 \begin{SUMMARY}
 \begin{itemize}
-\item Yyy
+\item Stability under uncertainty
+\item Performance under uncertainty
 \end{itemize}
 \vfill References:
 \begin{itemize}
-\item \astrom{Chapter Z}
+\item \astrom{§13.2 - §13.3}
 \end{itemize}
 \end{SUMMARY}
 
 
 
-\SUBCONCEPT{This is a Subconcept}
+\SUBCONCEPT{Stability under uncertainty}
 
-\begin{frame}{This is a slide}
+\begin{frame}{Robustness using Nyquist's criterion}
 \begin{itemize}
-\item a
-\item b
+\item It is important to design a system such that it is stable in the presence of uncertainty
+\item The Nyquist criterion can help us --- it states that a system should be sufficiently far away from the critical point $-1$ for robust stability
+\item Recall that the shortest distance from the Nyquist curve to the critical point is $s_m=1/M_s$
 \end{itemize}
 \end{frame}
 
 
-\SUBCONCEPT{This is another Subconcept}
+\begin{frame}{When does uncertainty lead to instability?}
+	\begin{itemize}
+		\item Consider a stable feedback system with process $P$ and controller $C$
+		\item Suppose the process is changed from $P$ to $P+\Delta$ (additive perturbation) where $\Delta$ is a stable transfer function
+		\item The loop transfer function becomes $PC+C\Delta$ (from $PC$) and therefore the perturbed Nyquist curve will not reach the critical point $-1$ if
+		\[|C\Delta|<|1+PC|, \quad |\Delta| <\left|\frac{1+PC}{C}\right|\]
+		or, for multiplicative perturbations, if
+		\[|\delta|<\frac{1}{|T|}, \quad \text{where } \delta=\frac{\Delta}{P}\]
+		\item This condition must be satisfied for all points on the Nyquist curve for robust stability %(this is conservative as we really only need perturbations in the direction of the critical point to be lower than some bound)
+	\end{itemize}
+\end{frame}
 
-\begin{frame}{This is another slide}
+
+\begin{frame}{Stability bounds}
+	\begin{itemize}
+		\item Variations can be large for frequencies where $T$ is small and therefore we have the estimate of permissable perturbations
+		\[|\delta(i\omega)|=\left|\frac{\Delta(i\omega)}{P(i\omega)} \right| <\frac{1}{|T(i\omega)|}\leq \frac{1}{M_t}\]
+		where $M_t$ is the largest value of the complementary sensitivity
+		\item This condition is quite conservative as we only need perturbations to be less than some bound in the direction of the critical point
+		\item For many systems, large uncertainties may be permitted at high and low frequencies (not true for all systems!)
+	\end{itemize}
+\end{frame}
+
+
+
+
+\SUBCONCEPT{Performance under uncertainty}
+
+\begin{frame}{Load disturbance attenuation}
 \begin{itemize}
-\item c
-\item d
+\item The transfer function from load disturbances $v$ to process output $y$ gives a characterisation of the effect of feedback on disturbances
+\[G_{yv}=\frac{P}{1+PC}=PS\]
+\item As load disturbances are typically low frequency, we want $G_{yv}$ to be small for low frequencies
+\item Differentiating $G_{yv}$ with respect to $P$ and rearranging we get the relation that for small process variations
+\[\frac{\mathrm{d}G_{yv}}{G_{yv}}=S\frac{\mathrm{d}P}{P}\]
+\item Relative error in $G_{yv}$ is determined by relative error in $P$, scaled by $S$ --- response to load disturbances is insensitive to process variation for frequencies where $S$ is small
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Measurement noise attenuation}
+	\begin{itemize}
+		\item The effect of measurement noise can be investigated by the transfer function from measurement noise $w$ to controller output $u$
+		\[G_{uw}=-\frac{C}{1+PC}=-\frac{T}{P}\]
+		\item As measurement noise is typically high frequency, we want $G_{uw}$ to be small for high frequencies (high-frequency roll-off for $C$)
+		\item We get a similar relation from differentiation with respect to $P$
+		\[\frac{\mathrm{d}G_{uw}}{G_{uw}}=-T\frac{\mathrm{d}P}{P}\]
+		\item If $PC$ is small for high frequencies, then $T$ is small, and response to measurement noise is insensitive to process variation at these high frequencies
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Response to reference signals}
+	\begin{itemize}
+		\item The transfer function that represents reference input to output is 
+		\[G_{yr} = \frac{PCF}{1+PC}=TF\]
+		\item Differentiating with respect to $P$ and rearranging we get
+		\[\frac{\mathrm{d}G_{yr}}{G_{yr}}=S\frac{\mathrm{d}P}{P}\]
+		\item The relative error in the closed loop transfer function is related to the product of the relative error of the process with the sensitivity
+		\item The response to reference signals is unaffected when the sensitivity is small
+	\end{itemize}
+\end{frame}
 
 \SUMMARYFRAME
 \FINALE
